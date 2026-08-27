@@ -4,7 +4,7 @@
 
 O **projeto escola** é uma aplicação desenvolvida em C para controle do funcionamento básico de uma escola.
 
-O sistema tem objetivo estrutar o conhecimento em: 
+O sistema tem objetivo estruturar o conhecimento em: 
 
 * **Modularização** para separar o código em rotinas de fácil manutenção.
 * **Lógica e estruturação do Código**.
