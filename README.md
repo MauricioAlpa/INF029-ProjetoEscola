@@ -2,7 +2,7 @@
 
 ## 📋 Sobre o Projeto
 
-O ""projeto escola** é uma aplicação desenvolvida em C para controle do funcionamento básico de uma escola.
+O **projeto escola** é uma aplicação desenvolvida em C para controle do funcionamento básico de uma escola.
 
 O sistema tem objetivo estrutar o conhecimento em: 
 
