@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include <Structs.c>
+#include <Structs.h>
 #include <Functions.c>
 
 int main(){
     int op, qAlunos = 0;
     Aluno alunos[qAlunos];
 
-    printf("")
+    printf("Escolha a opção:\n1-)Cadastrar Aluno.\n2-)Cadastrar Professor\n3-)Cadastrar Disciplina")
 
     while(op != 0){
         switch (op)

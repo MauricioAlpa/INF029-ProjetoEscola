@@ -1,7 +1,9 @@
-#include <Structs.c>
+#include <Structs.h>
+#include <stdlib.h>
 
-Aluno alunos[]
+Aluno alunos[];
 
 void cadastroAlunos(){
     
 }
+
