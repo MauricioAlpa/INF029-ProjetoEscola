@@ -1,3 +1,6 @@
+#ifndef STRUCTS_H
+#define STRUCTS_H
+
 typedef struct
 {
     int dia;
@@ -7,11 +10,11 @@ typedef struct
 
 typedef struct
 {
-    char matricula[11];
+    char matricula[12];
     char nome[50];
     char sexo;
     Data nascimento;
-    char cpf[11];
+    char cpf[12];
 }Aluno;
 
 typedef struct
@@ -30,3 +33,5 @@ typedef struct
     int semestre;
     char professor[50];
 }Disciplina;
+
+#endif
