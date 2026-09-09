@@ -9,7 +9,7 @@
 
 int main() {
 
-    int vagas = 1;
+    int vagas = 1, qtdAlunos = 0;
     Aluno *alunos = NULL;
     int sair = 0;
     int opcao;
@@ -29,7 +29,7 @@ int main() {
                 break;        
             }
             case 1: {
-                menuAluno(alunos, vagas);
+                menuAluno(&alunos, &vagas, &qtdAlunos);
                 break;
             }
         }
