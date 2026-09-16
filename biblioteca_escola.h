@@ -30,3 +30,14 @@ typedef struct
     int semestre;
     char professor[50];
 }Disciplina;
+
+int menuAluno(&alunos, &vagas, &qtdAlunos);
+
+void mainProfessor();
+int menuProfessor();
+int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor);
+void listarProfessor(Professor listaProfessor[], int qtdProfessor);
+void atualizarProfessor(Professor listaProfessor[], int qtdProfessor);
+int excluirProfessor(Professor listaProfessor[], int qtdProfessor);
+
+menuDisciplina(&));

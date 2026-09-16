@@ -1,5 +1,7 @@
 #include <stdio.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include "biblioteca_escola.h"
 #define TAM_PROFESSOR 3
 
 typedef struct {
