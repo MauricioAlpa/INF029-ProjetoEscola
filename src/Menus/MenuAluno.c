@@ -1,4 +1,5 @@
 #include <Headers/MenuAluno.h>
+#include <Headers/FunctionsAluno.h>
 #include <stdio.h>
 #define VAGAS 50
 
@@ -30,9 +31,10 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                     printf("Lista de Alunos cheia!\n");
                     break;
                 } 
-                (*qtdAlunos)++;
             
-                ;
+                cadastrarAluno(alunos, qtdAlunos);
+
+                (*qtdAlunos)++;
         
                 break;    
             }
