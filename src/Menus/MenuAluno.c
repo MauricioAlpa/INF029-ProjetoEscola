@@ -1,6 +1,4 @@
 #include <Headers/MenuAluno.h>
-#include <Headers/FunctionsAluno.h>
-#include <stdio.h>
 #define VAGAS 50
 
 void menuAluno(Aluno *alunos, int *qtdAlunos){
@@ -48,6 +46,23 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                 }else{
                     listarAlunos(alunos, *qtdAlunos);
                 }
+                break;
+            }
+
+            case 3: {
+
+
+                printf("---Atualizar Aluno---\n");
+
+                bool result = atualizarAluno(alunos, *qtdAlunos);
+
+                if(result){
+                    printf("Aluno atualizado com sucesso!\n");
+
+                }else{
+                    printf("Aluno não encontrado.\n");
+                }
+
                 break;
             }
 

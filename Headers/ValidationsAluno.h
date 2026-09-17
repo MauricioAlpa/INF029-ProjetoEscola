@@ -2,6 +2,8 @@
 #define VALIDATIONSALUNO_H
 #include <stdbool.h>
 #include <Headers/Structs.h>
+#include <string.h>
+
 
 bool validaMatricula(int matricula, Aluno *alunos, int qtdAlunos);
 
