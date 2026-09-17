@@ -25,6 +25,8 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
             case 1: {
 
                 printf("---Cadastrar Aluno---\n");
+                printf("\n");
+
                 if(*qtdAlunos == VAGAS){
                     printf("Lista de Alunos cheia!\n");
                     break;
@@ -40,6 +42,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
             case 2: {
 
                 printf("---Listar Alunos---\n");
+                printf("\n");
 
                 if(*qtdAlunos == 0){
                     printf("Lista vazia.\n");
@@ -51,13 +54,33 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
 
             case 3: {
 
-
                 printf("---Atualizar Aluno---\n");
+                printf("\n");
 
                 bool result = atualizarAluno(alunos, *qtdAlunos);
 
                 if(result){
+
                     printf("Aluno atualizado com sucesso!\n");
+
+                }else{
+
+                    printf("Aluno não encontrado.\n");
+                }
+
+                break;
+            }
+
+            case 4: {
+                
+                printf("---Excluir Aluno---");
+                printf("\n");
+
+                bool result = excluirAluno(alunos, qtdAlunos);
+
+                if(result){
+
+                    printf("Aluno excluido com sucesso!\n");
 
                 }else{
                     printf("Aluno não encontrado.\n");

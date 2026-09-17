@@ -100,7 +100,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
 
         printf("Digigte o cpf do aluno: \n");
         fgets(cpf, 12, stdin);
-        flush_in();//limpo buffer
+
 
         if(strlen(cpf) > 0){//verifica se o cpf não está vazio
             retiraBarraN(cpf);
@@ -159,6 +159,7 @@ bool existeMatricula(Aluno *aluno, int qtdAlunos, int matricula, int *posicao){/
 }
 
 bool atualizarAluno(Aluno *alunos, int qtdAluno){
+
     int matricula;
     int posicao = 0;
     bool existe = false;
@@ -249,7 +250,6 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
 
                 printf("Digigte o cpf do aluno: \n");
                 fgets(cpf, 12, stdin);
-                flush_in();//limpo buffer
 
                 if(strlen(cpf) > 0){//verifica se o cpf não está vazio
                     retiraBarraN(cpf);
@@ -283,4 +283,29 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
         }
 
         return false;
+}
+
+bool excluirAluno(Aluno *alunos, int *qtdAluno){
+    int matricula;
+    int posicao = 0;
+    bool existe = false;
+
+    printf("Digite a matricula do aluno a ser excluido: \n");
+
+    scanf("%i", &matricula);
+    flush_in();//Limpo o buffer para nao atrapalhar o fgets com o \n
+
+    existe = existeMatricula(alunos, *qtdAluno, matricula, &posicao);
+
+    if(existe){
+        for (int i = posicao; i < *qtdAluno - 1; i++) {
+            alunos[i] = alunos[i + 1];
+        }
+
+        (*qtdAluno)--;
+
+        return true;
+    }
+
+    return false;
 }

@@ -17,4 +17,6 @@ bool existeMatricula(Aluno *aluno, int qtdAlunos, int matricula, int *posicao);
 
 bool atualizarAluno(Aluno *alunos, int qtdAluno);
 
+bool excluirAluno(Aluno *alunos, int *qtdAluno);
+
 #endif
