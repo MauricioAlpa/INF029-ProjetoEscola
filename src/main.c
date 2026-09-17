@@ -1,16 +1,15 @@
 #include <stdio.h>
-#include <Structs.h>
-#include <Menus.h>
 #include <stdlib.h>
-#include <Functions.h>
+#include <Headers/Structs.h>
+#include <Headers/MenuAluno.h>
 #define VAGAS 50
 
 
 
 int main() {
 
-    int vagas = 1, qtdAlunos = 0;
-    Aluno *alunos = NULL;
+    int qtdAlunos = 0;
+    Aluno *alunos = malloc(VAGAS * sizeof(Aluno));
     int sair = 0;
     int opcao;
 
@@ -29,10 +28,12 @@ int main() {
                 break;        
             }
             case 1: {
-                menuAluno(&alunos, &vagas, &qtdAlunos);
+                menuAluno(alunos, &qtdAlunos);
                 break;
             }
         }
     }
+
+    free(alunos);
     return 0;
 }
