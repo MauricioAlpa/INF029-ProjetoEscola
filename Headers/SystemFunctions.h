@@ -1,12 +1,13 @@
 #ifndef SYSTEMFUNCTIONS_H
 #define SYSTEMFUNCTIONS_H
+#include <stdio.h>
 
 
-char toLowerCase(char string[]);
+void toLowerCase(char string[]);
 
-char retiraBarraN(char string[]);
+void retiraBarraN(char string[]);
 
-char retiraEspaco(char string[]);
+void retiraEspaco(char string[]);
 
 void flush_in();
 

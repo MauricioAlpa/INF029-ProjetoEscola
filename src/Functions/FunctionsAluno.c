@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include <Headers/FunctionsAluno.h>
-#include <Headers/SystemFunctions.h>
-#include <Headers/ValidationsAluno.h>
 
 void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
 
@@ -134,6 +128,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
            alunos[*qtdAlunos].nascimento.mes,
            alunos[*qtdAlunos].nascimento.ano);
     printf("CPF: %s\n", alunos[*qtdAlunos].cpf);
+    printf("\n");
 }
 
 void listarAlunos(Aluno *alunos, int qtdAlunos){
@@ -148,4 +143,144 @@ void listarAlunos(Aluno *alunos, int qtdAlunos){
         printf("CPF: %s\n", alunos[i].cpf);
         printf("\n");
     }
+}
+
+bool existeMatricula(Aluno *aluno, int qtdAlunos, int matricula, int *posicao){//Função para verificar se existe aluno com a matricula cadastrada.
+
+    for(int i = 0; i < qtdAlunos; i++){
+
+        if(aluno[i].matricula == matricula){
+            *posicao = i;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool atualizarAluno(Aluno *alunos, int qtdAluno){
+    int matricula;
+    int posicao = 0;
+    bool existe = false;
+
+    printf("Digite a matricula do aluno a ser atualizado: \n");
+
+    scanf("%i", &matricula);
+    flush_in();//Limpo o buffer para nao atrapalhar o fgets com o \n
+
+    existe = existeMatricula(alunos, qtdAluno, matricula, &posicao);
+
+    if(existe){
+      //Reutilizei o código de cadastrar aluno.
+        bool validadoMatricula = false, validadoNome = false, validadoSexo = false, validadoNascimento = false, validadoCpf = false;
+        bool result = false; 
+
+        
+        while(!validadoNome){
+            char nome[50]; //variavel temporaria para verificação do nome.
+
+            printf("Digite o nome do aluno: \n");
+            fgets(nome, 50, stdin);
+
+            retiraEspaco(nome);//retira espaco no final e no comeco do nome
+            retiraBarraN(nome);//retira o /n do final
+
+            if(strlen(nome) > 0){//verifica se nome não está vazio
+
+                toLowerCase(nome);//função para padronizar os nomes em minusculo, caso o user digite: MaUrIcIo
+                
+                result = validaNome(nome);
+
+                if(result){
+                    strcpy(alunos[posicao].nome, nome);
+                    validadoNome = true;
+                }else{
+                    printf("Digite um nome válido.\n");
+                }
+            }else{
+                printf("Inválido: Digite algum nome.\n");
+            }
+        }
+
+        while(!validadoSexo){
+            char sexo;
+
+            printf("Digite o gênero(M/F) do aluno(a): \n");
+            scanf("%c", &sexo);
+
+            result = validaSexo(sexo);
+
+            if(result){
+
+                alunos[posicao].sexo = sexo;
+                validadoSexo = true;
+
+            }else{
+                printf("Digite o gênero do aluno apenas como M para masculino e F para feminino.\n");
+            }
+        }
+
+        while(!validadoNascimento){
+            Data nascimento; //variavel temporaria para verificação do nascimento.
+
+            printf("Digite a data de nascimento (DD/MM/AAAA): \n");
+            if (scanf("%d/%d/%d", &nascimento.dia, &nascimento.mes, &nascimento.ano) == 3) {
+
+                flush_in();//limpo buffer
+                result = validaData(nascimento); //Chama a função para validar a data e retornar true ou false
+
+                if(result){
+
+                    alunos[posicao].nascimento = nascimento;
+                    validadoNascimento = true;
+
+                }else{
+                    printf("Data inválida.\n");
+                }
+
+            }else {
+                flush_in();//limpo buffer
+                printf("Erro: Formato de data inválido. Use o padrão DD/MM/AAAA.\n");
+            }
+        }
+
+        while(!validadoCpf){
+                char cpf[12];//variavel temporaria para verificação do CPF.
+
+                printf("Digigte o cpf do aluno: \n");
+                fgets(cpf, 12, stdin);
+                flush_in();//limpo buffer
+
+                if(strlen(cpf) > 0){//verifica se o cpf não está vazio
+                    retiraBarraN(cpf);
+                    retiraEspaco(cpf);
+
+                    result = validaCPF(cpf);
+
+                    if(result){
+                        strcpy(alunos[posicao].cpf, cpf);
+                        validadoCpf = true;
+                    }else{
+                        printf("O CPF deve conter apenas números.");
+                    }
+                }else{
+                    printf("Digite um CPF.\n");
+                }
+            }
+
+            printf("\n--- ALUNO %i ATUALIZADO ---\n", alunos[posicao].matricula);
+            printf("Matrícula: %d\n", alunos[posicao].matricula);
+            printf("Nome: %s\n", alunos[posicao].nome);
+            printf("Sexo: %c\n", alunos[posicao].sexo);
+            printf("Nascimento: %02d/%02d/%04d\n",
+                alunos[posicao].nascimento.dia,
+                alunos[posicao].nascimento.mes,
+                alunos[posicao].nascimento.ano);
+            printf("CPF: %s\n", alunos[posicao].cpf);
+            printf("\n");
+
+            return true;
+        }
+
+        return false;
 }

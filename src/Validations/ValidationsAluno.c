@@ -1,6 +1,3 @@
-#include <stdbool.h>
-#include <Headers/Structs.h>
-#include <string.h>
 #include <Headers/ValidationsAluno.h>
 
 

@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <Headers/SystemFunctions.h>
 
 void toLowerCase(char string[]){ // Função para mudar todas as letras para lowercase
 

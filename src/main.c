@@ -23,14 +23,14 @@ int main() {
         scanf("%d", &opcao);
 
         switch(opcao) { 
-            case 0: {
+            case 0: 
                 sair = 1;
                 break;        
-            }
-            case 1: {
+            
+            case 1: 
                 menuAluno(alunos, &qtdAlunos);
                 break;
-            }
+            
         }
     }
 
