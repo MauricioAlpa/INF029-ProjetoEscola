@@ -4,4 +4,6 @@
 
 void cadastrarAluno(Aluno *alunos, int *qtdAlunos);
 
+void listarAlunos(Aluno *alunos, int qtdAlunos);
+
 #endif

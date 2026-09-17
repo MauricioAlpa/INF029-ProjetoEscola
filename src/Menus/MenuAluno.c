@@ -26,7 +26,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
 
             case 1: {
 
-                printf("Cadastrar Aluno\n");
+                printf("---Cadastrar Aluno---\n");
                 if(*qtdAlunos == VAGAS){
                     printf("Lista de Alunos cheia!\n");
                     break;
@@ -37,6 +37,18 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                 (*qtdAlunos)++;
         
                 break;    
+            }
+
+            case 2: {
+
+                printf("---Listar Alunos---\n");
+
+                if(*qtdAlunos == 0){
+                    printf("Lista vazia.\n");
+                }else{
+                    listarAlunos(alunos, *qtdAlunos);
+                }
+                break;
             }
 
             default: {

@@ -8,6 +8,7 @@
 
 void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
 
+
     //Variaveis para continuar pegando entrada do user ate estarem certas
     bool validadoMatricula = false, validadoNome = false, validadoSexo = false, validadoNascimento = false, validadoCpf = false;
     bool result = false; 
@@ -133,4 +134,18 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
            alunos[*qtdAlunos].nascimento.mes,
            alunos[*qtdAlunos].nascimento.ano);
     printf("CPF: %s\n", alunos[*qtdAlunos].cpf);
+}
+
+void listarAlunos(Aluno *alunos, int qtdAlunos){
+    for(int i = 0; i < qtdAlunos; i++){
+        printf("Matrícula: %d\n", alunos[i].matricula);
+        printf("Nome: %s\n", alunos[i].nome);
+        printf("Sexo: %c\n", alunos[i].sexo);
+        printf("Nascimento: %02d/%02d/%04d\n",
+           alunos[i].nascimento.dia,
+           alunos[i].nascimento.mes,
+           alunos[i].nascimento.ano);
+        printf("CPF: %s\n", alunos[i].cpf);
+        printf("\n");
+    }
 }
