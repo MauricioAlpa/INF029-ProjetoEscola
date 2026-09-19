@@ -14,6 +14,8 @@ int main() {
     int sair = 0;
     int opcao;
 
+    Disciplina disciplinas[MAX_Disciplinas];
+    int qtdDisciplinas = 0;
 
     while(!sair) {
         printf("\n");
@@ -36,6 +38,11 @@ int main() {
             
             case 1: 
                 menuAluno(alunos, &qtdAlunos);
+                break;
+            
+
+            case 3:
+                menuDisciplina(alunos, qtdAlunos);
                 break;
 
             case 4:

@@ -29,9 +29,11 @@ typedef struct
 typedef struct
 {
     char nome[50];
-    char codigo[6];
-    int semestre;
+    char codigo[10];
+    char semestre[10];
     char professor[50];
+    int matriculas[VAGAS_DISCIPLINA];
+    int qtdAlunos;
 }Disciplina;
 
 #endif
