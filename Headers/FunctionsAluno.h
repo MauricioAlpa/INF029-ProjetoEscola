@@ -21,4 +21,6 @@ bool excluirAluno(Aluno *alunos, int *qtdAluno);
 
 void listarAlunoSexo(Aluno *alunos, int qtdAlunos, char sexo);
 
+void ordenarAlunosPorNome(Aluno *alunos, int qtdAlunos);
+
 #endif

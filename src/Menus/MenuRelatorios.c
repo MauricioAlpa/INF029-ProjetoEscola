@@ -90,7 +90,14 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
                 break;
 
             case 6:
-                printf("\n--- Listar Alunos ordenados por Nome ---\n");
+                printf("\n--- Alunos ordenados por Nome ---\n");
+
+                if (qtdAlunos == 0) {
+                    printf("Lista vazia.\n");
+                } else {
+                    ordenarAlunosPorNome(alunos, qtdAlunos);
+                }
+
                 break;
 
             case 7:

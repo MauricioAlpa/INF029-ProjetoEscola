@@ -366,3 +366,31 @@ void listarAlunoSexo(Aluno *alunos, int qtdAlunos, char sexo){
         }
     }
 }
+
+
+
+void ordenarAlunosPorNome(Aluno *alunos, int qtdAlunos) {
+
+    Aluno *copia = malloc(qtdAlunos * sizeof(Aluno));
+
+    for (int i = 0; i < qtdAlunos; i++) {
+        copia[i] = alunos[i];
+    }
+
+    for (int i = 0; i < qtdAlunos - 1; i++) {
+
+        for (int j = i + 1; j < qtdAlunos; j++) {
+
+            if (strcmp(copia[i].nome, copia[j].nome) > 0) {
+
+                Aluno temp = copia[i];
+                copia[i] = copia[j];
+                copia[j] = temp;
+            }
+        }
+    }
+
+    listarAlunos(copia, qtdAlunos);
+
+    free(copia);
+}
