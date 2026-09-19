@@ -46,3 +46,12 @@ void flush_in() { //Peguei essa funcao no stackOverFlow para limpar o buffer pos
         ch = fgetc(stdin);
     } while (ch != EOF && ch != '\n');
 }
+
+char toLowerChar(char caractere) {
+
+    if (caractere >= 'A' && caractere <= 'Z') {
+        caractere = caractere + 32;
+    }
+
+    return caractere;
+}

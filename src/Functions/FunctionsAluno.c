@@ -47,10 +47,14 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
                 strcpy(alunos[*qtdAlunos].nome, nome);
                 validadoNome = true;
             }else{
+                printf(" ");
                 printf("Digite um nome válido.\n");
+                printf(" ");
             }
         }else{
+            printf("\n");
             printf("Inválido: Digite algum nome.\n");
+            printf("\n");
         }
     }
 
@@ -58,7 +62,10 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
         char sexo;
 
         printf("Digite o gênero(M/F) do aluno(a): \n");
-        scanf("%c", &sexo);
+        scanf(" %c", &sexo);
+        
+
+        sexo = toLowerChar(sexo);
 
         result = validaSexo(sexo);
 
@@ -68,7 +75,9 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
             validadoSexo = true;
 
         }else{
+            printf("\n");
             printf("Digite o gênero do aluno apenas como M para masculino e F para feminino.\n");
+            printf("\n");
         }
     }
 
@@ -87,12 +96,16 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
                 validadoNascimento = true;
 
             }else{
+                printf("\n");
                 printf("Data inválida.\n");
+                printf("\n");
             }
 
         }else {
             flush_in();//limpo buffer
+            printf("\n");
             printf("Erro: Formato de data inválido. Use o padrão DD/MM/AAAA.\n");
+            printf("\n");
         }
     }
 
@@ -113,10 +126,14 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
                 strcpy(alunos[*qtdAlunos].cpf, cpf);
                 validadoCpf = true;
             }else{
+                printf("\n");
                 printf("O CPF deve conter apenas números.");
+                printf("\n");
             }
         }else{
+            printf("\n");
             printf("Digite um CPF.\n");
+            printf("\n");
         }
     }
 
@@ -197,10 +214,14 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
                     strcpy(alunos[posicao].nome, nome);
                     validadoNome = true;
                 }else{
+                    printf("\n");
                     printf("Digite um nome válido.\n");
+                    printf("\n");
                 }
             }else{
+                printf("\n");
                 printf("Inválido: Digite algum nome.\n");
+                printf("\n");
             }
         }
 
@@ -208,7 +229,9 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
             char sexo;
 
             printf("Digite o gênero(M/F) do aluno(a): \n");
-            scanf("%c", &sexo);
+            scanf(" %c", &sexo);
+
+            sexo = toLowerChar(sexo);
 
             result = validaSexo(sexo);
 
@@ -218,7 +241,9 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
                 validadoSexo = true;
 
             }else{
+                printf("\n");
                 printf("Digite o gênero do aluno apenas como M para masculino e F para feminino.\n");
+                printf("\n");
             }
         }
 
@@ -237,12 +262,16 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
                     validadoNascimento = true;
 
                 }else{
+                    printf("\n");
                     printf("Data inválida.\n");
+                    printf("\n");
                 }
 
             }else {
                 flush_in();//limpo buffer
+                printf("\n");
                 printf("Erro: Formato de data inválido. Use o padrão DD/MM/AAAA.\n");
+                printf("\n");
             }
         }
 
@@ -251,6 +280,7 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
 
                 printf("Digigte o cpf do aluno: \n");
                 fgets(cpf, 12, stdin);
+                flush_in();
 
                 if(strlen(cpf) > 0){//verifica se o cpf não está vazio
                     retiraBarraN(cpf);
@@ -262,10 +292,14 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
                         strcpy(alunos[posicao].cpf, cpf);
                         validadoCpf = true;
                     }else{
+                        printf("\n");
                         printf("O CPF deve conter apenas números.");
+                        printf("\n");
                     }
                 }else{
+                    printf("\n");
                     printf("Digite um CPF.\n");
+                    printf("\n");
                 }
             }
 
@@ -287,10 +321,12 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
 }
 
 bool excluirAluno(Aluno *alunos, int *qtdAluno){
+
     int matricula;
     int posicao = 0;
     bool existe = false;
 
+    printf("\n");
     printf("Digite a matricula do aluno a ser excluido: \n");
 
     scanf("%i", &matricula);
@@ -309,4 +345,24 @@ bool excluirAluno(Aluno *alunos, int *qtdAluno){
     }
 
     return false;
+}
+
+void listarAlunoSexo(Aluno *alunos, int qtdAlunos, char sexo){
+
+    sexo = toLowerChar(sexo);
+
+    for(int i = 0; i < qtdAlunos; i++){
+        if(alunos[i].sexo == sexo){
+            printf("\n");
+            printf("Matrícula: %d\n", alunos[i].matricula);
+            printf("Nome: %s\n", alunos[i].nome);
+            printf("Sexo: %c\n", alunos[i].sexo);
+            printf("Nascimento: %02d/%02d/%04d\n",
+            alunos[i].nascimento.dia,
+            alunos[i].nascimento.mes,
+            alunos[i].nascimento.ano);
+            printf("CPF: %s\n", alunos[i].cpf);
+            printf("\n");
+        }
+    }
 }

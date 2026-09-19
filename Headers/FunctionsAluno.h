@@ -19,4 +19,6 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno);
 
 bool excluirAluno(Aluno *alunos, int *qtdAluno);
 
+void listarAlunoSexo(Aluno *alunos, int qtdAlunos, char sexo);
+
 #endif

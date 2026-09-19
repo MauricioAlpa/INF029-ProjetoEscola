@@ -9,6 +9,8 @@ void retiraBarraN(char string[]);
 
 void retiraEspaco(char string[]);
 
+char toLowerChar(char caractere);
+
 void flush_in();
 
 #endif

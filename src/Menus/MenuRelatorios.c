@@ -63,7 +63,30 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
                 break;
 
             case 5:
-                printf("\n--- Listar Alunos por Sexo ---\n");
+                char sexo;
+                bool result = false;
+                
+                do
+                {
+                    printf("\n--- Listar Alunos por Gênero ---\n");
+
+                    printf("\n");
+                    printf("Escolha o filtro por gênero(M/F): \n");
+                    scanf(" %c", &sexo);
+                    
+
+                    result = validaSexo(sexo);
+                
+                    if(result){
+                        listarAlunoSexo(alunos, qtdAlunos, sexo);
+                    }else {
+                        printf("\nDigite um gênero válido(M/F)\n");
+                        printf(" ");
+                    }
+
+                } while (!result);
+                
+
                 break;
 
             case 6:

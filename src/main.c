@@ -14,6 +14,7 @@ int main() {
     int sair = 0;
     int opcao;
 
+
     while(!sair) {
         printf("\n");
         printf("========================================\n");
@@ -39,6 +40,7 @@ int main() {
 
             case 4:
                 menuRelatorios(alunos, qtdAlunos);
+                break;
         }
     }
 

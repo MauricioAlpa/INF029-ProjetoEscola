@@ -1,6 +1,7 @@
 #ifndef MENURELATORIOS_H
 #define MENURELATORIOS_H
 #include <Headers/FunctionsAluno.h>
+#include <Headers/ValidationsAluno.h>
 #include <stdio.h>
 #include <Headers/Structs.h>
 
