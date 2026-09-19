@@ -9,7 +9,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
 
     while(!validadoMatricula){
         int matricula;
-
+        
         printf("Digite a matrícula do aluno(a): \n");
         scanf("%i", &matricula);
         flush_in();//Limpo o buffer para nao atrapalhar o fgets com o \n
@@ -22,8 +22,9 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
             validadoMatricula = true;
 
         }else{
-
-            printf("Digite um número inteiro, entre 1 e 51");
+            printf("\n");
+            printf("Digite um número inteiro, entre 1 e 51\n");
+            printf("\n");
         }
     }
 
