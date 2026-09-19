@@ -14,11 +14,16 @@ int main() {
     int opcao;
 
     while(!sair) {
-        printf("Projeto Escola\n");
+        printf("\n");
+        printf("========================================\n");
+        printf("              PROJETO ESCOLA\n");
+        printf("========================================\n");
         printf("0 - Sair\n");
         printf("1 - Aluno\n");
         printf("2 - Professor\n");
         printf("3 - Disciplina\n");
+        printf("4 - Relatórios\n");
+        printf("========================================\n");
 
         scanf("%d", &opcao);
 
@@ -30,7 +35,6 @@ int main() {
             case 1: 
                 menuAluno(alunos, &qtdAlunos);
                 break;
-            
         }
     }
 

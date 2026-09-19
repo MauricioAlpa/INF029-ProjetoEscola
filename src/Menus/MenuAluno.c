@@ -3,16 +3,20 @@
 
 void menuAluno(Aluno *alunos, int *qtdAlunos){
 
-    printf("Módulo Aluno\n");
     int sairAluno = 0;
     int opcaoAluno;
 
     while(!sairAluno) {
+        printf("\n");
+        printf("========================================\n");
+        printf("              MÓDULO ALUNO\n");
+        printf("========================================\n");
         printf("0 - Voltar\n");
         printf("1 - Cadastrar Aluno\n");
         printf("2 - Listar Aluno\n");
         printf("3 - Atualizar Aluno\n");
         printf("4 - Excluir Aluno\n");
+        printf("========================================\n");
         scanf("%d", &opcaoAluno);
 
         switch(opcaoAluno) { 
@@ -24,6 +28,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
 
             case 1: {
 
+                printf("\n");
                 printf("---Cadastrar Aluno---\n");
                 printf("\n");
 
@@ -41,6 +46,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
 
             case 2: {
 
+                printf("\n");
                 printf("---Listar Alunos---\n");
                 printf("\n");
 
@@ -54,6 +60,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
 
             case 3: {
 
+                printf("\n");
                 printf("---Atualizar Aluno---\n");
                 printf("\n");
 
@@ -73,6 +80,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
 
             case 4: {
                 
+                printf("\n");
                 printf("---Excluir Aluno---");
                 printf("\n");
 
