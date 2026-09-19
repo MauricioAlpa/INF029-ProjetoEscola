@@ -27,7 +27,7 @@ bool validaNome(char nome[]){
 }
 
 bool validaSexo(char sexo){
-    if(sexo != 'M' && sexo != 'F'){
+    if(sexo != 'm' && sexo != 'f'){
         return false;
     }
 
