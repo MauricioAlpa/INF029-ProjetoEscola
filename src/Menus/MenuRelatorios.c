@@ -1,4 +1,6 @@
-void menuRelatorios() {
+#include <Headers/MenuRelatorio.h>
+
+void menuRelatorios(Aluno *alunos, int qtdAlunos) {
 
     int sairRelatorios = 0;
     int opcaoRelatorio;
@@ -36,6 +38,16 @@ void menuRelatorios() {
 
             case 1:
                 printf("\n--- Listar Alunos ---\n");
+
+                
+                if(qtdAlunos == 0){
+                    printf("\n");
+                    printf("Lista vazia.\n");
+                    printf("\n");
+                }else{
+                    listarAlunos(alunos, qtdAlunos);
+                }
+
                 break;
 
             case 2:

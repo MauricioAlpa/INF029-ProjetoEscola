@@ -33,7 +33,9 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                 printf("\n");
 
                 if(*qtdAlunos == VAGAS){
+                    printf("\n");
                     printf("Lista de Alunos cheia!\n");
+                    printf("\n");
                     break;
                 } 
             
@@ -51,7 +53,9 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                 printf("\n");
 
                 if(*qtdAlunos == 0){
+                    printf("\n");
                     printf("Lista vazia.\n");
+                    printf("\n");
                 }else{
                     listarAlunos(alunos, *qtdAlunos);
                 }
@@ -67,12 +71,14 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                 bool result = atualizarAluno(alunos, *qtdAlunos);
 
                 if(result){
-
+                    printf("\n");
                     printf("Aluno atualizado com sucesso!\n");
+                    printf("\n");
 
                 }else{
-
+                    printf("\n");
                     printf("Aluno não encontrado.\n");
+                    printf("\n");
                 }
 
                 break;
@@ -87,19 +93,23 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                 bool result = excluirAluno(alunos, qtdAlunos);
 
                 if(result){
-
+                    printf("\n");
                     printf("Aluno excluido com sucesso!\n");
+                    printf("\n");
 
                 }else{
+                    printf("\n");
                     printf("Aluno não encontrado.\n");
+                    printf("\n");
                 }
 
                 break;
             }
 
             default: {
-
+                printf("\n");
                 printf("Opcao Inválida\n");
+                printf("\n");
                 break;
             }
 

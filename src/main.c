@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <Headers/Structs.h>
 #include <Headers/MenuAluno.h>
+#include <Headers/MenuRelatorio.h>
 #define VAGAS 50
 
 
@@ -35,6 +36,9 @@ int main() {
             case 1: 
                 menuAluno(alunos, &qtdAlunos);
                 break;
+
+            case 4:
+                menuRelatorios(alunos, qtdAlunos);
         }
     }
 
