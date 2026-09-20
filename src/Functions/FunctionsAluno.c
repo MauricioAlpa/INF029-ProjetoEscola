@@ -367,8 +367,6 @@ void listarAlunoSexo(Aluno *alunos, int qtdAlunos, char sexo){
     }
 }
 
-
-
 void ordenarAlunosPorNome(Aluno *alunos, int qtdAlunos) {
 
     Aluno *copia = malloc(qtdAlunos * sizeof(Aluno));
