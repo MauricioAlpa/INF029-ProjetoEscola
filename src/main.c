@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include <Headers/Structs.h>
 #include <Headers/MenuAluno.h>
+#include <Headers/MenuDisciplina.h>
 #include <Headers/MenuRelatorio.h>
 #define VAGAS 50
 
@@ -9,13 +15,20 @@
 
 int main() {
 
+    #ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8); // acentos saem certos no terminal do Windows
+    SetConsoleCP(CP_UTF8);       // e a digitação com acento também
+    #endif
+
     int qtdAlunos = 0;
     Aluno *alunos = malloc(VAGAS * sizeof(Aluno));
     int sair = 0;
     int opcao;
 
-    Disciplina disciplinas[MAX_Disciplinas];
+    Disciplina *disciplinas = malloc(MAX_Disciplinas * sizeof(Disciplina));
     int qtdDisciplinas = 0;
+
+
 
     while(!sair) {
         printf("\n");
@@ -42,15 +55,16 @@ int main() {
             
 
             case 3:
-                menuDisciplina(alunos, qtdAlunos);
+                menuDisciplina(disciplinas, &qtdDisciplinas, alunos, qtdAlunos);
                 break;
 
             case 4:
-                menuRelatorios(alunos, qtdAlunos);
+                menuRelatorios(alunos, qtdAlunos, disciplinas, qtdDisciplinas);
                 break;
         }
     }
 
     free(alunos);
+    free(disciplinas);
     return 0;
 }

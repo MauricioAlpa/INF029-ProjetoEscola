@@ -1,5 +1,6 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
+#define MAX_Disciplinas 50
 
 typedef struct
 {
@@ -32,7 +33,7 @@ typedef struct
     char codigo[10];
     char semestre[10];
     char professor[50];
-    int matriculas[VAGAS_DISCIPLINA];
+    int matriculas[MAX_Disciplinas];
     int qtdAlunos;
 }Disciplina;
 

@@ -3,7 +3,8 @@
 #include <Headers/FunctionsDisciplina.h>
 #include <stdio.h>
 #include <Headers/Structs.h>
+#include <Headers/SystemFunctions.h>
 
-void menuDisciplina(Aluno *alunos, int qtdAlunos);
+void menuDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Aluno *alunos, int qtdAlunos);
 
 #endif

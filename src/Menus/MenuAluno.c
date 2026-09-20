@@ -37,7 +37,7 @@ void menuAluno(Aluno *alunos, int *qtdAlunos){
                     printf("Lista de Alunos cheia!\n");
                     printf("\n");
                     break;
-                } 
+                }
             
                 cadastrarAluno(alunos, qtdAlunos);
 

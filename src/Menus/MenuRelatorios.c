@@ -1,6 +1,6 @@
 #include <Headers/MenuRelatorio.h>
 
-void menuRelatorios(Aluno *alunos, int qtdAlunos) {
+void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas) {
 
     int sairRelatorios = 0;
     int opcaoRelatorio;
@@ -28,7 +28,17 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
         printf("14 - Disciplinas com mais de 40 alunos\n");
         printf("========================================\n");
 
-        scanf("%d", &opcaoRelatorio);
+        int resultado = scanf("%d", &opcaoRelatorio);
+        flush_in(); // descarta o resto da linha (inclusive o \n) para as funções que usam fgets começarem com o buffer limpo
+
+        if (resultado == EOF) {
+            return;
+        }
+
+        if (resultado != 1) {
+            printf("\nOpção inválida!\n");
+            continue;
+        }
 
         switch (opcaoRelatorio) {
 
@@ -56,13 +66,29 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
 
             case 3:
                 printf("\n--- Listar Disciplinas ---\n");
+
+                 if (qtdDisciplinas == 0) {
+                    printf("Nenhuma disciplina cadastrada.\n\n");
+                }
+                else {
+                    listarTodasDisciplinas(disciplinas, qtdDisciplinas);
+                }
+                
                 break;
 
             case 4:
                 printf("\n--- Listar uma Disciplina ---\n");
+
+                if (qtdDisciplinas == 0) {
+                    printf("Nenhuma disciplina cadastrada.\n\n");
+                }
+                else {
+                    listarUmaDisciplina(disciplinas, qtdDisciplinas, alunos, qtdAlunos);
+                }
+
                 break;
 
-            case 5:
+            case 5: {
                 char sexo;
                 bool result = false;
                 
@@ -75,6 +101,7 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
                     scanf(" %c", &sexo);
                     
 
+                    sexo = toLowerChar(sexo);
                     result = validaSexo(sexo);
                 
                     if(result){
@@ -88,6 +115,7 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
                 
 
                 break;
+            }
 
             case 6:
                 printf("\n--- Alunos ordenados por Nome ---\n");
@@ -130,6 +158,14 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos) {
 
             case 14:
                 printf("\n--- Disciplinas com mais de 40 alunos ---\n");
+
+                if (qtdDisciplinas == 0) {
+                    printf("Nenhuma disciplina cadastrada.\n\n");
+                }
+                else {
+                    listarDisciplinasMaisDe40Alunos(disciplinas, qtdDisciplinas);
+                }
+
                 break;
 
             default:
