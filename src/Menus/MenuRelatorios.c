@@ -29,7 +29,7 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
         printf("========================================\n");
 
         int resultado = scanf("%d", &opcaoRelatorio);
-        flush_in(); // descarta o resto da linha (inclusive o \n) para as funções que usam fgets começarem com o buffer limpo
+        flush_in();
 
         if (resultado == EOF) {
             return;
