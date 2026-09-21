@@ -129,7 +129,14 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
                 break;
 
             case 7:
-                printf("\n--- Listar Alunos ordenados por Data de Nascimento ---\n");
+                printf("\n--- Alunos ordenados por Data de Nascimento ---\n");
+
+                if (qtdAlunos == 0) {
+                    printf("Lista vazia.\n");
+                } else {
+                    ordenarAlunosPorData(alunos, qtdAlunos);
+                }
+
                 break;
 
             case 8:

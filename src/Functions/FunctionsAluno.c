@@ -392,3 +392,34 @@ void ordenarAlunosPorNome(Aluno *alunos, int qtdAlunos) {
 
     free(copia);
 }
+
+void ordenarAlunosPorData(Aluno *alunos, int qtdAlunos) {
+
+    Aluno *copia = malloc(qtdAlunos * sizeof(Aluno));
+
+    for (int i = 0; i < qtdAlunos; i++) {
+        copia[i] = alunos[i];
+    }
+
+    for (int i = 0; i < qtdAlunos - 1; i++) {
+
+        for (int j = i + 1; j < qtdAlunos; j++) {
+
+            if (copia[i].nascimento.ano > copia[j].nascimento.ano ||
+               (copia[i].nascimento.ano == copia[j].nascimento.ano &&
+                copia[i].nascimento.mes > copia[j].nascimento.mes) ||
+               (copia[i].nascimento.ano == copia[j].nascimento.ano &&
+                copia[i].nascimento.mes == copia[j].nascimento.mes &&
+                copia[i].nascimento.dia > copia[j].nascimento.dia)) {
+
+                Aluno temp = copia[i];
+                copia[i] = copia[j];
+                copia[j] = temp;
+            }
+        }
+    }
+
+    listarAlunos(copia, qtdAlunos);
+
+    free(copia);
+}
