@@ -145,13 +145,13 @@ void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas) {
 
     printf("Código da disciplina a ser atualizada: ");
     if (fgets(codigo, 10, stdin) == NULL) {
-        return; //fim da entrada (EOF)
+        return; 
     }
     if (strchr(codigo, '\n') == NULL) {
-        flush_in(); //o texto passou do tamanho: descarta o resto para não atrapalhar a próxima leitura
+        flush_in(); 
     }
     codigo[strcspn(codigo, "\n")] = '\0';
-    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+    toLowerCase(codigo); 
 
     if (!validaCodigoDisciplina(codigo)) {
         printf("Código inválido: não pode ficar em branco.\n\n");
@@ -259,13 +259,13 @@ void excluirDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
 
     printf("Código da disciplina a ser excluída: ");
     if (fgets(codigo, 10, stdin) == NULL) {
-        return; //fim da entrada (EOF)
+        return; 
     }
     if (strchr(codigo, '\n') == NULL) {
         flush_in();
     }
     codigo[strcspn(codigo, "\n")] = '\0';
-    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+    toLowerCase(codigo); 
 
     if (!validaCodigoDisciplina(codigo)) {
         printf("Código inválido: não pode ficar em branco.\n\n");
@@ -287,7 +287,7 @@ void excluirDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
 
     int alunosMatriculados = disciplinas[indice].qtdAlunos;
 
-    //puxa as disciplinas seguintes uma posição para trás, cobrindo a que foi excluída
+    
     for (int i = indice; i < *qtdDisciplinas - 1; i++) {
         disciplinas[i] = disciplinas[i + 1];
     }
@@ -306,13 +306,13 @@ void inserirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *
 
     printf("Código da disciplina: ");
     if (fgets(codigo, 10, stdin) == NULL) {
-        return; //fim da entrada (EOF)
+        return; 
     }
     if (strchr(codigo, '\n') == NULL) {
-        flush_in(); //o texto passou do tamanho: descarta o resto para não atrapalhar a próxima leitura
+        flush_in(); 
     }
     codigo[strcspn(codigo, "\n")] = '\0';
-    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+    toLowerCase(codigo); 
 
     if (!validaCodigoDisciplina(codigo)) {
         printf("Código inválido: não pode ficar em branco.\n\n");
@@ -339,7 +339,7 @@ void inserirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *
 
     printf("Matrícula do aluno: ");
     int lido = scanf("%d", &matricula);
-    flush_in(); //limpa o buffer depois do scanf
+    flush_in(); 
     if (lido != 1) {
         printf("Matrícula inválida.\n\n");
         return;
@@ -380,13 +380,13 @@ void excluirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas) {
 
     printf("Código da disciplina: ");
     if (fgets(codigo, 10, stdin) == NULL) {
-        return; //fim da entrada (EOF)
+        return; 
     }
     if (strchr(codigo, '\n') == NULL) {
         flush_in();
     }
     codigo[strcspn(codigo, "\n")] = '\0';
-    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+    toLowerCase(codigo);
 
     if (!validaCodigoDisciplina(codigo)) {
         printf("Código inválido: não pode ficar em branco.\n\n");
@@ -439,13 +439,13 @@ void listarUmaDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alu
 
     printf("Código da disciplina: ");
     if (fgets(codigo, 10, stdin) == NULL) {
-        return; //fim da entrada (EOF)
+        return; 
     }
     if (strchr(codigo, '\n') == NULL) {
-        flush_in(); //o texto passou do tamanho: descarta o resto para não atrapalhar a próxima leitura
+        flush_in(); 
     }
     codigo[strcspn(codigo, "\n")] = '\0';
-    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+    toLowerCase(codigo); 
 
     if (!validaCodigoDisciplina(codigo)) {
         printf("Código inválido: não pode ficar em branco.\n\n");
@@ -482,7 +482,7 @@ void listarUmaDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alu
         if (existeMatricula(alunos, qtdAlunos, matricula, &posicao)) {
             printf("  Matrícula: %d | Nome: %s\n", matricula, alunos[posicao].nome);
         } else {
-            printf("  Matrícula: %d\n", matricula); //aluno não está mais cadastrado, mostra só o número
+            printf("  Matrícula: %d\n", matricula); 
         }
     }
     printf("\n");
@@ -492,7 +492,7 @@ void listarDisciplinasMaisDe40Alunos(Disciplina *disciplinas, int qtdDisciplinas
     int encontradas = 0;
 
     for (int i = 0; i < qtdDisciplinas; i++) {
-        if (disciplinas[i].qtdAlunos > 40) { //regra do professor: mais de 40 alunos
+        if (disciplinas[i].qtdAlunos > 40) {
             printf("Nome: %s | Codigo: %s | Semestre: %s | Professor: %s\n",
                    disciplinas[i].nome, disciplinas[i].codigo,
                    disciplinas[i].semestre, disciplinas[i].professor);
