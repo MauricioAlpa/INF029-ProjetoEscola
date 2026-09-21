@@ -20,7 +20,8 @@ typedef struct
 
 typedef struct
 {
-    int matricula[11];
+    int ativo;
+    int matricula;
     char nome[50];
     char sexo;
     Data nascimento;

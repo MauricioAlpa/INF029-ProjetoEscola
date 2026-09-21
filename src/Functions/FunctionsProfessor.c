@@ -1,77 +1,93 @@
-#include <Headers/FunctionsAluno.h>
+#include <Headers/FunctionsProfessor.h>
+#define TAM_PROFESSOR 50
 
 int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
+	bool result = false;
 	printf("\n--- Cadastrar Professor ---\n");
 	if (qtdProfessor == TAM_PROFESSOR) {
 		printf("Lista de Professores cheia!\n");
 	} else {
-		int matricula;
-		printf("Digite a matrícula: ");
-		scanf("%d", &matricula);
 
-		if (matricula <= 0) {
-			printf("Matrícula Inválida!\n");
-		} else {
-			listaProfessor[qtdProfessor].matricula = matricula;
+		bool matriculaValido = false;
+		while(!matriculaValidado){
+			int matriculaTemp;
 
-			getchar();
+			printf("\nDigite a matricula do professor: \n");
+			scanf("%i", &matriculaTemp);
 
-			bool nomeValido = false;
-			while (!nomeValido) {
-				printf("Digite o nome: ");
-				fgets(listaProfessor[qtdProfessor].nome, 50, stdin);
+			result = validaMatricula();
 
-				if (!validaNome(listaProfessor[qtdProfessor].nome)) {
-					printf("Nome inválido! (Deve ter entre 1 e 20 caracteres)\n");
-				} else {
-					retiraBarraN(listaProfessor[qtdProfessor].nome);
-					nomeValido = true;
-				}
+			if(result){
+				listaProfessor[qtdProfessor].matricula = matriculaTemp;
+				matriculaValidado = true;
+			}else{
+				printf("Mátricula já existe ou incorreta, digite um número inteiro.");
 			}
-
-			bool sexoValido = false;
-			while (!sexoValido) {
-				printf("Digite o sexo (M/F): ");
-				scanf(" %c", &listaProfessor[qtdProfessor].sexo);
-
-				if (!validaSexo(listaProfessor[qtdProfessor].sexo)) {
-					printf("Sexo inválido! Digite apenas M ou F.\n");
-				} else {
-					sexoValido = true;
-				}
-			}
-
-			bool cpfValido = false;
-			while (!cpfValido) {
-				printf("Digite o CPF (somente números): ");
-				scanf("%s", listaProfessor[qtdProfessor].cpf);
-
-				if (!validaCPF(listaProfessor[qtdProfessor].cpf)) {
-					printf("CPF inválido!\n");
-				} else {
-					cpfValido = true;
-				}
-			}
-
-			bool dataValida = false;
-			while (!dataValida) {
-				printf("Digite a data de nascimento (dd mm aaaa): ");
-				scanf("%d/%d/%d", 
-					&listaProfessor[qtdProfessor].nascimento.dia, 
-					&listaProfessor[qtdProfessor].nascimento.mes, 
-					&listaProfessor[qtdProfessor].nascimento.ano);
-
-				if (!validaData(listaProfessor[qtdProfessor].nascimento)) {
-					printf("Data inválida!\n");
-				} else {
-					dataValida = true;
-				}
-			}
-
-			listaProfessor[qtdProfessor].ativo = 1;
-			qtdProfessor++;
-			printf("\nProfessor cadastrado com sucesso!\n");
 		}
+
+		bool nomeValido = false;
+		while (!nomeValido) {
+			char nome[50]; 
+			printf("Digite o nome: \n");
+			fgets(nome, 50, stdin);
+
+			retiraEspaco(nome);
+			retiraBarraN(nome);
+			toLowerCase(nome);
+
+			result = validaNome(nome);
+
+			if (result) {
+				strcpy(listaProfessor[qtdProfessor].nome, nome);
+				nomeValido = false;
+			} else {
+				printf("\nNome inválido! (Deve ter entre 1 e 20 caracteres)\n");
+			}
+		}
+
+		bool sexoValido = false;
+		while (!sexoValido) {
+			printf("Digite o sexo (M/F): ");
+			scanf(" %c", &listaProfessor[qtdProfessor].sexo);
+
+			if (!validaSexo(listaProfessor[qtdProfessor].sexo)) {
+				printf("Sexo inválido! Digite apenas M ou F.\n");
+			} else {
+				sexoValido = true;
+			}
+		}
+
+		bool cpfValido = false;
+		while (!cpfValido) {
+			printf("Digite o CPF (somente números): ");
+			scanf("%s", listaProfessor[qtdProfessor].cpf);
+
+			if (!validaCPF(listaProfessor[qtdProfessor].cpf)) {
+				printf("CPF inválido!\n");
+			} else {
+				cpfValido = true;
+			}
+		}
+
+		bool dataValida = false;
+		while (!dataValida) {
+			printf("Digite a data de nascimento (dd mm aaaa): ");
+			scanf("%d/%d/%d", 
+				&listaProfessor[qtdProfessor].nascimento.dia, 
+				&listaProfessor[qtdProfessor].nascimento.mes, 
+				&listaProfessor[qtdProfessor].nascimento.ano);
+
+			if (!validaData(listaProfessor[qtdProfessor].nascimento)) {
+				printf("Data inválida!\n");
+			} else {
+				dataValida = true;
+			}
+		}
+
+		listaProfessor[qtdProfessor].ativo = 1;
+		qtdProfessor++;
+		printf("\nProfessor cadastrado com sucesso!\n");
+	}
 	}
 	return qtdProfessor;
 }

@@ -1,11 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <Headers/Structs.h>
 #include <Headers/MenuProfessor.h>
-#define TAM_PROFESSOR 50
 
-void menuProfessor() {
-	int sairProfessor = 0;
+void menuProfessor(Professor listaProfessor[], int *qtdProfessor) {
+    int sairProfessor = 0;
     int opcaoProfessor;
-
-	while (!sairProfessor) {
+    
+    while (!sairProfessor) {
         printf("\n");
         printf("========================================\n");
         printf("              MÓDULO PROFESSOR \n");
@@ -16,27 +18,28 @@ void menuProfessor() {
         printf("3 - Atualizar Professor\n");
         printf("4 - Excluir Professor\n");
         printf("========================================\n");
-	    scanf("%d", &opcaoProfessor);
+        printf("Opção: ");
+        scanf("%d", &opcaoProfessor);
 
-		switch (opcaoProfessor) {
-		case 0:
-			sairProfessor = 1;
-			break;
-		case 1:
-			qtdProfessor = cadastrarProfessor(listaProfessor, qtdProfessor);
-			break;
-		case 2:
-			listarProfessor(listaProfessor, qtdProfessor);
-			break;
-		case 3:
-			atualizarProfessor(listaProfessor, qtdProfessor);
-			break;
-		case 4:
-			qtdProfessor = excluirProfessor(listaProfessor, qtdProfessor);
-			break;
-		default:
-			printf("Opcao Inválida\n");
-			break;
-		}
-	}
+        switch (opcaoProfessor) {
+        case 0:
+            sairProfessor = 1;
+            break;
+        case 1:
+            *qtdProfessor = cadastrarProfessor(listaProfessor, *qtdProfessor);
+            break;
+        case 2:
+            listarProfessor(listaProfessor, *qtdProfessor);
+            break;
+        case 3:
+            atualizarProfessor(listaProfessor, *qtdProfessor);
+            break;
+        case 4:
+            *qtdProfessor = excluirProfessor(listaProfessor, *qtdProfessor);
+            break;
+        default:
+            printf("Opção Inválida\n");
+            break;
+        }
+    }
 }

@@ -6,8 +6,6 @@
 #include <stdio.h>
 #include <Headers/Structs.h>
 
-void mainProfessor();
-
-int menuProfessor();
+void menuProfessor(Professor listaProfessor[], int *qtdProfessor);
 
 #endif

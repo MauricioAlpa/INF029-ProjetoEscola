@@ -12,4 +12,6 @@ bool validaData(Data nascimento);
 
 bool validaCPF(char cpf[]);
 
+bool validaMatricula(int matricula, Professor professores[], int qtdProfessor);
+
 #endif
