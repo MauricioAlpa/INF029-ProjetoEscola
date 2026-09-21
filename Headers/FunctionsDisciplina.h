@@ -13,6 +13,10 @@ void listarTodasDisciplinas(Disciplina *disciplinas, int qtdDisciplinas);
 
 void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas);
 
+void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas);
+
+void excluirDisciplina(Disciplina *disciplinas, int *qtdDisciplinas);
+
 void inserirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alunos, int qtdAlunos);
 
 void excluirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas);

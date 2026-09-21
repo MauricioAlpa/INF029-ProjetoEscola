@@ -139,6 +139,167 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
     (*qtdDisciplinas)++;
 }
 
+void atualizarDisciplina(Disciplina *disciplinas, int qtdDisciplinas) {
+    char codigo[10];
+    int indice = -1;
+
+    printf("Código da disciplina a ser atualizada: ");
+    if (fgets(codigo, 10, stdin) == NULL) {
+        return; //fim da entrada (EOF)
+    }
+    if (strchr(codigo, '\n') == NULL) {
+        flush_in(); //o texto passou do tamanho: descarta o resto para não atrapalhar a próxima leitura
+    }
+    codigo[strcspn(codigo, "\n")] = '\0';
+    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+
+    if (!validaCodigoDisciplina(codigo)) {
+        printf("Código inválido: não pode ficar em branco.\n\n");
+        return;
+    }
+    retiraEspaco(codigo);
+
+    for (int i = 0; i < qtdDisciplinas; i++) {
+        if (strcmp(disciplinas[i].codigo, codigo) == 0) {
+            indice = i;
+            break;
+        }
+    }
+
+    if (indice == -1) {
+        printf("Disciplina não encontrada.\n\n");
+        return;
+    }
+
+    printf("\n");
+    printf("Dados atuais -> Nome: %s | Semestre: %s | Professor: %s\n",
+           disciplinas[indice].nome, disciplinas[indice].semestre, disciplinas[indice].professor);
+    printf("Digite os novos dados (o código não pode ser alterado).\n\n");
+
+    //Variaveis temporarias: só vão para a disciplina no final, quando os 3 campos estiverem válidos
+    char nome[50], semestre[10], professor[50];
+    bool validadoNome = false, validadoSemestre = false, validadoProfessor = false;
+
+    while (!validadoNome) {
+        printf("Novo nome da disciplina: ");
+        if (fgets(nome, 50, stdin) == NULL) {
+            return;
+        }
+        if (strchr(nome, '\n') == NULL) {
+            flush_in();
+        }
+        nome[strcspn(nome, "\n")] = '\0';
+        toLowerCase(nome);
+
+        if (validaNomeDisciplina(nome)) {
+            retiraEspaco(nome);
+            validadoNome = true;
+        } else {
+            printf("\n");
+            printf("Nome inválido: não pode ficar em branco.\n");
+            printf("\n");
+        }
+    }
+
+    while (!validadoSemestre) {
+        printf("Novo semestre da disciplina: ");
+        if (fgets(semestre, 10, stdin) == NULL) {
+            return;
+        }
+        if (strchr(semestre, '\n') == NULL) {
+            flush_in();
+        }
+        semestre[strcspn(semestre, "\n")] = '\0';
+        toLowerCase(semestre);
+
+        if (validaSemestreDisciplina(semestre)) {
+            retiraEspaco(semestre);
+            validadoSemestre = true;
+        } else {
+            printf("\n");
+            printf("Semestre inválido: não pode ficar em branco.\n");
+            printf("\n");
+        }
+    }
+
+    while (!validadoProfessor) {
+        printf("Novo professor da disciplina: ");
+        if (fgets(professor, 50, stdin) == NULL) {
+            return;
+        }
+        if (strchr(professor, '\n') == NULL) {
+            flush_in();
+        }
+        professor[strcspn(professor, "\n")] = '\0';
+        toLowerCase(professor);
+
+        if (validaProfessorDisciplina(professor)) {
+            retiraEspaco(professor);
+            validadoProfessor = true;
+        } else {
+            printf("\n");
+            printf("Professor inválido: não pode ficar em branco.\n");
+            printf("\n");
+        }
+    }
+
+    strcpy(disciplinas[indice].nome, nome);
+    strcpy(disciplinas[indice].semestre, semestre);
+    strcpy(disciplinas[indice].professor, professor);
+
+    printf("\n--- DISCIPLINA %s ATUALIZADA ---\n", disciplinas[indice].codigo);
+    printf("Nome: %s | Codigo: %s | Semestre: %s | Professor: %s\n\n",
+           disciplinas[indice].nome, disciplinas[indice].codigo,
+           disciplinas[indice].semestre, disciplinas[indice].professor);
+}
+
+void excluirDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
+    char codigo[10];
+    int indice = -1;
+
+    printf("Código da disciplina a ser excluída: ");
+    if (fgets(codigo, 10, stdin) == NULL) {
+        return; //fim da entrada (EOF)
+    }
+    if (strchr(codigo, '\n') == NULL) {
+        flush_in();
+    }
+    codigo[strcspn(codigo, "\n")] = '\0';
+    toLowerCase(codigo); //padroniza em minusculo, para MAT202 encontrar mat202
+
+    if (!validaCodigoDisciplina(codigo)) {
+        printf("Código inválido: não pode ficar em branco.\n\n");
+        return;
+    }
+    retiraEspaco(codigo);
+
+    for (int i = 0; i < *qtdDisciplinas; i++) {
+        if (strcmp(disciplinas[i].codigo, codigo) == 0) {
+            indice = i;
+            break;
+        }
+    }
+
+    if (indice == -1) {
+        printf("Disciplina não encontrada.\n\n");
+        return;
+    }
+
+    int alunosMatriculados = disciplinas[indice].qtdAlunos;
+
+    //puxa as disciplinas seguintes uma posição para trás, cobrindo a que foi excluída
+    for (int i = indice; i < *qtdDisciplinas - 1; i++) {
+        disciplinas[i] = disciplinas[i + 1];
+    }
+    (*qtdDisciplinas)--;
+
+    printf("Disciplina excluída com sucesso!\n");
+    if (alunosMatriculados > 0) {
+        printf("%d aluno(s) matriculado(s) nela foram desvinculados.\n", alunosMatriculados);
+    }
+    printf("\n");
+}
+
 void inserirAlunoDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alunos, int qtdAlunos) {
     char codigo[10];
     int matricula, indice = -1, existe = 0, ja_Matriculado = 0;

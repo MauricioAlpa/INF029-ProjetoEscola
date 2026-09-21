@@ -8,9 +8,11 @@ void menuDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Aluno *alunos,
         printf("1 - Cadastrar disciplina\n");
         printf("2 - Inserir aluno em disciplina\n");
         printf("3 - Excluir aluno da disciplina\n");
+        printf("4 - Atualizar disciplina\n");
+        printf("5 - Excluir disciplina\n");
 
         int resultado = scanf("%d", &opcaoDisciplina);
-        flush_in(); 
+        flush_in(); // descarta o resto da linha (inclusive o \n) para as funções começarem com o buffer limpo
         printf("\n");
 
         if (resultado == EOF) {
@@ -19,7 +21,7 @@ void menuDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Aluno *alunos,
 
         if (resultado != 1) {
             printf("Entrada inválida. Digite um número.\n\n");
-            opcaoDisciplina = 1; 
+            opcaoDisciplina = 1; // mantém o menu ativo depois de uma entrada inválida
             continue;
         }
 
@@ -42,6 +44,16 @@ void menuDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Aluno *alunos,
 
             case 3: {
                 excluirAlunoDisciplina(disciplinas, *qtdDisciplinas);
+                break;
+            }
+
+            case 4: {
+                atualizarDisciplina(disciplinas, *qtdDisciplinas);
+                break;
+            }
+
+            case 5: {
+                excluirDisciplina(disciplinas, qtdDisciplinas);
                 break;
             }
 
