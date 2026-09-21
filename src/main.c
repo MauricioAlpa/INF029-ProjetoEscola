@@ -7,10 +7,12 @@
 
 #include <Headers/Structs.h>
 #include <Headers/MenuAluno.h>
+#include <Headers/MenuProfessor.h>
 #include <Headers/MenuDisciplina.h>
 #include <Headers/MenuRelatorio.h>
-#define VAGAS 50
 
+#define VAGAS 50
+#define TAM_PROFESSOR 50
 
 
 int main() {
@@ -24,6 +26,10 @@ int main() {
     Aluno *alunos = malloc(VAGAS * sizeof(Aluno));
     int sair = 0;
     int opcao;
+
+    int qtdProfessor = 0;
+    Professor listaProfessor[TAM_PROFESSOR];
+
 
     Disciplina *disciplinas = malloc(MAX_Disciplinas * sizeof(Disciplina));
     int qtdDisciplinas = 0;
@@ -53,6 +59,9 @@ int main() {
                 menuAluno(alunos, &qtdAlunos);
                 break;
             
+            case 2:
+                menuProfessor(listaProfessor, &qtdProfessor);
+                break;
 
             case 3:
                 menuDisciplina(disciplinas, &qtdDisciplinas, alunos, qtdAlunos);
