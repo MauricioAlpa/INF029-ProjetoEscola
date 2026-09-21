@@ -20,24 +20,24 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
         return;
     }
 
-    //Variaveis para continuar pegando entrada do user ate estarem certas
+   
     bool validadoNome = false, validadoCodigo = false, validadoSemestre = false, validadoProfessor = false;
 
     while (!validadoNome) {
-        char nome[50]; //variavel temporaria para verificação do nome.
+        char nome[50]; 
 
         printf("Nome da disciplina: ");
         if (fgets(nome, 50, stdin) == NULL) {
-            return; //fim da entrada (EOF), evita ficar preso no laço
+            return; 
         }
         if (strchr(nome, '\n') == NULL) {
-            flush_in(); //o texto passou do tamanho: descarta o resto para não atrapalhar o próximo fgets
+            flush_in(); 
         }
         nome[strcspn(nome, "\n")] = '\0';
-        toLowerCase(nome); //padroniza em minusculo
+        toLowerCase(nome); 
 
         if (validaNomeDisciplina(nome)) {
-            retiraEspaco(nome); //retira espaco no final e no comeco do nome
+            retiraEspaco(nome); 
             strcpy(disciplinas[*qtdDisciplinas].nome, nome);
             validadoNome = true;
         } else {
@@ -48,7 +48,7 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
     }
 
     while (!validadoCodigo) {
-        char codigo[10]; //variavel temporaria para verificação do código.
+        char codigo[10]; 
 
         printf("Código da disciplina: ");
         if (fgets(codigo, 10, stdin) == NULL) {
@@ -58,7 +58,7 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
             flush_in();
         }
         codigo[strcspn(codigo, "\n")] = '\0';
-        toLowerCase(codigo); //padroniza em minusculo
+        toLowerCase(codigo); 
 
         if (validaCodigoDisciplina(codigo)) {
             retiraEspaco(codigo);
@@ -85,7 +85,7 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
     }
 
     while (!validadoSemestre) {
-        char semestre[10]; //variavel temporaria para verificação do semestre.
+        char semestre[10]; 
 
         printf("Semestre da disciplina: ");
         if (fgets(semestre, 10, stdin) == NULL) {
@@ -95,7 +95,7 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
             flush_in();
         }
         semestre[strcspn(semestre, "\n")] = '\0';
-        toLowerCase(semestre); //padroniza em minusculo
+        toLowerCase(semestre); 
 
         if (validaSemestreDisciplina(semestre)) {
             retiraEspaco(semestre);
@@ -109,7 +109,7 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
     }
 
     while (!validadoProfessor) {
-        char professor[50]; //variavel temporaria para verificação do professor.
+        char professor[50]; 
 
         printf("Professor da disciplina: ");
         if (fgets(professor, 50, stdin) == NULL) {
@@ -119,7 +119,7 @@ void cadastrarDisciplina(Disciplina *disciplinas, int *qtdDisciplinas) {
             flush_in();
         }
         professor[strcspn(professor, "\n")] = '\0';
-        toLowerCase(professor); //padroniza em minusculo
+        toLowerCase(professor); 
 
         if (validaProfessorDisciplina(professor)) {
             retiraEspaco(professor);
