@@ -322,21 +322,21 @@ int excluirProfessor(Professor listaProfessor[], int qtdProfessor) {
 	return qtdProfessor;
 }
 
-void listarProfessorSexo(Professor alunos[], int qtdAlunos, char sexo) {
+void listarProfessorSexo(Professor listaProfessor[], int qtdProfessor, char sexo) {
     sexo = toLowerChar(sexo);
 
     int encontrados = 0;
     for (int i = 0; i < qtdAlunos; i++) {
-        if (alunos[i].ativo && alunos[i].sexo == sexo) {
+        if (listaProfessor[i].ativo && listaProfessor[i].sexo == sexo) {
             printf("\n");
-            printf("Matrícula: %d\n", alunos[i].matricula);
-            printf("Nome: %s\n", alunos[i].nome);
-            printf("Sexo: %c\n", alunos[i].sexo);
+            printf("Matrícula: %d\n", listaProfessor[i].matricula);
+            printf("Nome: %s\n", listaProfessor[i].nome);
+            printf("Sexo: %c\n", listaProfessor[i].sexo);
             printf("Nascimento: %02d/%02d/%04d\n",
-                   alunos[i].nascimento.dia,
-                   alunos[i].nascimento.mes,
-                   alunos[i].nascimento.ano);
-            printf("CPF: %s\n", alunos[i].cpf);
+                   listaProfessor[i].nascimento.dia,
+                   listaProfessor[i].nascimento.mes,
+                   listaProfessor[i].nascimento.ano);
+            printf("CPF: %s\n", listaProfessor[i].cpf);
             printf("\n");
             encontrados++;
         }
