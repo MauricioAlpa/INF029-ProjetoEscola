@@ -11,7 +11,6 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 		bool matriculaValido = false;
 		while(!matriculaValidado){
 			int matriculaTemp;
-
 			printf("\nDigite a matricula do professor: \n");
 			scanf("%i", &matriculaTemp);
 
@@ -47,40 +46,68 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 		bool sexoValido = false;
 		while (!sexoValido) {
-			printf("Digite o sexo (M/F): ");
-			scanf(" %c", &listaProfessor[qtdProfessor].sexo);
+			char sexo;
 
-			if (!validaSexo(listaProfessor[qtdProfessor].sexo)) {
-				printf("Sexo inválido! Digite apenas M ou F.\n");
-			} else {
+			printf("Digite o sexo (M/F): ");
+			scanf(" %c", &sexo);
+
+			sexo = toLowerChar(sexo);
+
+			result = validaSexo(sexo);
+
+			if (result) {
+				listaProfessor[qtdProfessor].sexo = sexo;
 				sexoValido = true;
+			} else {
+				printf("Sexo inválido! Digite apenas M ou F.\n");
 			}
 		}
 
 		bool cpfValido = false;
 		while (!cpfValido) {
-			printf("Digite o CPF (somente números): ");
-			scanf("%s", listaProfessor[qtdProfessor].cpf);
+			char cpf[11];
 
-			if (!validaCPF(listaProfessor[qtdProfessor].cpf)) {
-				printf("CPF inválido!\n");
-			} else {
-				cpfValido = true;
+			printf("Digite o CPF (somente números): ");
+			fgets(cpf, 11, stdin);
+
+			if(strlen(cpf) > 0){
+
+				result = validaCPF(cpf);
+
+				retiraBarraN(cpf);
+				retiraEspaco(cpf);
+
+				if (result) {
+					strcpy(listaProfessor[qtdProfessor].cpf, cpf);
+					cpfValido = true;
+				} else {
+					printf("CPF inválido!\n");
+				}
+			}else {
+				printf("\n");
+				printf("Digite um CPF\n");
+				printf("\n");
 			}
 		}
 
 		bool dataValida = false;
 		while (!dataValida) {
+			Data nascimento;
+
 			printf("Digite a data de nascimento (dd mm aaaa): ");
 			scanf("%d/%d/%d", 
 				&listaProfessor[qtdProfessor].nascimento.dia, 
 				&listaProfessor[qtdProfessor].nascimento.mes, 
 				&listaProfessor[qtdProfessor].nascimento.ano);
-
-			if (!validaData(listaProfessor[qtdProfessor].nascimento)) {
-				printf("Data inválida!\n");
-			} else {
+			
+			flush_in();
+			result = validaData();	
+			if (result) {
+				listaProfessor[qtdProfessor].nascimento = nascimento;
 				dataValida = true;
+			} else {
+				printf("Data inválida!\n");
+
 			}
 		}
 
@@ -88,7 +115,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 		qtdProfessor++;
 		printf("\nProfessor cadastrado com sucesso!\n");
 	}
-	}
+	
 	return qtdProfessor;
 }
 
