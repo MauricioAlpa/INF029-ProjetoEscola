@@ -7,6 +7,6 @@
 #include <stdio.h>
 #include <Headers/Structs.h>
 
-void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas);
+void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas, Professor listaProfessor[], int qtdProfessor);
 
 #endif

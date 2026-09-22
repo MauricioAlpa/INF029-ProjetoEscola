@@ -1,6 +1,6 @@
 #include <Headers/MenuRelatorio.h>
 
-void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas) {
+void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas, Professor listaProfessor[], int qtdProfessor) {
 
     int sairRelatorios = 0;
     int opcaoRelatorio;
@@ -127,12 +127,13 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
                 }
 
                 break;
-
+                
             case 7:
                 printf("\n--- Listar Alunos ordenados por Data de Nascimento ---\n");
                 break;
 
             case 8:
+                char sexo;
                 printf("\n--- Listar Professores por Sexo ---\n");
                 if (qtdProfessor == 0) {
                     printf("Nenhum professor cadastrado!\n");

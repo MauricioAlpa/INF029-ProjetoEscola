@@ -66,7 +66,7 @@ bool validaCPF(char cpf[]){//Função para verificar se existem apenas números 
 bool validaMatricula(int matricula, Professor professores[], int qtdProfessor){ //Passo quantidade de Alunos pois preciso verificar o tamanho do vetor no for
     bool validado = false, matriculaExiste = false;
 
-    for(int i = 0; i < qtdAlunos; i++){ //For com a função de verificar se já existe uma matricula igual a essa. Se sim, a matricula já existe muda de false para true
+    for(int i = 0; i < qtdProfessor; i++){ //For com a função de verificar se já existe uma matricula igual a essa. Se sim, a matricula já existe muda de false para true
         if (professores[i].matricula == matricula){
             matriculaExiste = true;
         }

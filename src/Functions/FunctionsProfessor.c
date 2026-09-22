@@ -40,7 +40,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 				result = validaNome(nome);
 
 				if (result) {
-					strcpy(listaProfessor[indice].nome, nome);
+					strcpy(listaProfessor[qtdProfessor].nome, nome);
 					nomeValido = true;
 				} else {
 					printf("\nNome inválido! (Deve ter entre 1 e 20 caracteres)\n");
@@ -326,7 +326,7 @@ void listarProfessorSexo(Professor listaProfessor[], int qtdProfessor, char sexo
     sexo = toLowerChar(sexo);
 
     int encontrados = 0;
-    for (int i = 0; i < qtdAlunos; i++) {
+    for (int i = 0; i < qtdProfessor; i++) {
         if (listaProfessor[i].ativo && listaProfessor[i].sexo == sexo) {
             printf("\n");
             printf("Matrícula: %d\n", listaProfessor[i].matricula);
