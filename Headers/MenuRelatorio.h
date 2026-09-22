@@ -3,6 +3,7 @@
 #include <Headers/FunctionsAluno.h>
 #include <Headers/FunctionsDisciplina.h>
 #include <Headers/ValidationsAluno.h>
+#include <Headers/SystemFunctions.h>
 #include <stdio.h>
 #include <Headers/Structs.h>
 

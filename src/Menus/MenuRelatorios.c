@@ -153,6 +153,13 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
 
             case 11:
                 printf("\n--- Aniversariantes do Mês ---\n");
+                
+                if (qtdAlunos == 0) {
+                    printf("\nLista vazia.\n");
+                } else {
+                    listaAniversariantes(alunos, qtdAlunos);
+                }
+
                 break;
 
             case 12:
