@@ -116,7 +116,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
         fgets(cpf, 12, stdin);
 
 
-        if(strlen(cpf) > 0){//verifica se o cpf não está vazio
+        if(strlen(cpf) == 11){//verifica se o cpf não está vazio
             retiraBarraN(cpf);
             retiraEspaco(cpf);
 
@@ -132,7 +132,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
             }
         }else{
             printf("\n");
-            printf("Digite um CPF.\n");
+            printf("Digite um CPF com 11 números.\n");
             printf("\n");
         }
     }

@@ -7,7 +7,6 @@
 
 #include <Headers/Structs.h>
 #include <Headers/MenuAluno.h>
-#include <Headers/MenuProfessor.h>
 #include <Headers/MenuDisciplina.h>
 #include <Headers/MenuRelatorio.h>
 
@@ -60,7 +59,7 @@ int main() {
                 break;
             
             case 2:
-                menuProfessor(listaProfessor, &qtdProfessor);
+
                 break;
 
             case 3:

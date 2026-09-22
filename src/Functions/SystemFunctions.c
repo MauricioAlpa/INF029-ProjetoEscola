@@ -55,3 +55,33 @@ char toLowerChar(char caractere) {
 
     return caractere;
 }
+
+void listaAniversariantes(Aluno *alunos, int qtdAlunos){
+    time_t agora = time(NULL); //Pega o tempo atual.
+    struct tm *t = localtime(&agora); //Converte para uma struct
+    int qtdAniversariantesAlunos = 0;
+
+
+    printf("\n====Alunos Aniversariantes do Mês===\n");
+    printf("\n");
+
+    for(int i = 0; i < qtdAlunos; i++){
+
+        if(alunos[i].nascimento.mes == t->tm_mon + 1){ //faço mais +1 pois o mes começa de 0
+            printf("Matrícula: %d\n", alunos[i].matricula);
+            printf("Nome: %s\n", alunos[i].nome);
+            printf("Sexo: %c\n", alunos[i].sexo);
+            printf("Nascimento: %02d/%02d/%04d\n",
+                alunos[i].nascimento.dia,
+                alunos[i].nascimento.mes,
+                alunos[i].nascimento.ano);
+            printf("CPF: %s\n", alunos[i].cpf);
+            printf("\n");
+            qtdAniversariantesAlunos++;
+        }
+    }
+
+    if(qtdAniversariantesAlunos == 0){
+        printf("\nNenhum aniversariante neste mês.\n");
+    }
+}
