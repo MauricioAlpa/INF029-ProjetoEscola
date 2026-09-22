@@ -134,14 +134,29 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
 
             case 8:
                 printf("\n--- Listar Professores por Sexo ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    listarProfessorSexo(listaProfessor, qtdProfessor, sexo);
+                }
                 break;
 
             case 9:
                 printf("\n--- Listar Professores ordenados por Nome ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    ordenarProfessoresPorNome(listaProfessor, qtdProfessor);
+                }
                 break;
 
             case 10:
                 printf("\n--- Listar Professores ordenados por Data de Nascimento ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    ordenarProfessoresPorDataNascimento(listaProfessor, qtdProfessor);
+                }
                 break;
 
             case 11:

@@ -384,3 +384,52 @@ void ordenarProfessoresPorNome(Professor listaProfessor[], int qtdProfessor) {
         }
     }
 }
+
+void ordenarProfessoresPorDataNascimento(Professor listaProfessor[], int qtdProfessor) {
+
+    Professor copia[TAM_PROFESSOR];
+
+    for (int i = 0; i < qtdProfessor; i++) {
+        copia[i] = listaProfessor[i];
+    }
+
+    for (int i = 0; i < qtdProfessor - 1; i++) {
+        for (int j = i + 1; j < qtdProfessor; j++) {
+            
+            bool trocar = false;
+
+            if (copia[i].nascimento.ano > copia[j].nascimento.ano) {
+                trocar = true;
+            } else if (copia[i].nascimento.ano == copia[j].nascimento.ano) {
+                if (copia[i].nascimento.mes > copia[j].nascimento.mes) {
+                    trocar = true;
+                } else if (copia[i].nascimento.mes == copia[j].nascimento.mes) {
+                    if (copia[i].nascimento.dia > copia[j].nascimento.dia) {
+                        trocar = true;
+                    }
+                }
+            }
+
+            if (trocar) {
+                Professor temp = copia[i];
+                copia[i] = copia[j];
+                copia[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < qtdProfessor; i++) {
+        if (copia[i].ativo) {
+            printf("\n");
+            printf("Nascimento: %02d/%02d/%04d\n",
+                   copia[i].nascimento.dia,
+                   copia[i].nascimento.mes,
+                   copia[i].nascimento.ano);
+            printf("Matrícula: %d\n", copia[i].matricula);
+            printf("Nome: %s\n", copia[i].nome);
+            printf("Sexo: %c\n", copia[i].sexo);
+            printf("CPF: %s\n", copia[i].cpf);
+            printf("\n");
+        }
+    }
+}

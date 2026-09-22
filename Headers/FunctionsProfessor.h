@@ -21,4 +21,6 @@ void ordenarProfessoresPorNome(Professor listaProfessor[], int qtdProfessor);
 
 void listarProfessorSexo(Professor listaProfessor[], int qtdProfessores, char sexo);
 
+void ordenarProfessoresPorDataNascimento(Professor listaProfessor[], int qtdProfessor);
+
 #endif
