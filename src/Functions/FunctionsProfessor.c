@@ -9,16 +9,17 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 	} else {
 
 		bool matriculaValido = false;
-		while(!matriculaValidado){
+		while(!matriculaValido){
 			int matriculaTemp;
 			printf("\nDigite a matricula do professor: \n");
 			scanf("%i", &matriculaTemp);
+			flush_in();
 
-			result = validaMatricula();
+			result = validaMatricula(matriculaTemp, listaProfessor, qtdProfessor);
 
 			if(result){
 				listaProfessor[qtdProfessor].matricula = matriculaTemp;
-				matriculaValidado = true;
+				matriculaValido = true;
 			}else{
 				printf("Mátricula já existe ou incorreta, digite um número inteiro.");
 			}
@@ -32,15 +33,22 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 			retiraEspaco(nome);
 			retiraBarraN(nome);
-			toLowerCase(nome);
 
-			result = validaNome(nome);
+			if(strlen(nome) > 0){
+				toLowerCase(nome);
 
-			if (result) {
-				strcpy(listaProfessor[qtdProfessor].nome, nome);
-				nomeValido = false;
+				result = validaNome(nome);
+
+				if (result) {
+					strcpy(listaProfessor[indice].nome, nome);
+					nomeValido = true;
+				} else {
+					printf("\nNome inválido! (Deve ter entre 1 e 20 caracteres)\n");
+				}
 			} else {
-				printf("\nNome inválido! (Deve ter entre 1 e 20 caracteres)\n");
+				printf("\n");
+            	printf("Inválido: Digite algum nome.\n");
+           	 	printf("\n");
 			}
 		}
 
@@ -50,6 +58,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 			printf("Digite o sexo (M/F): ");
 			scanf(" %c", &sexo);
+			flush_in();
 
 			sexo = toLowerChar(sexo);
 
@@ -65,17 +74,15 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 		bool cpfValido = false;
 		while (!cpfValido) {
-			char cpf[11];
+			char cpf[12];
 
 			printf("Digite o CPF (somente números): ");
-			fgets(cpf, 11, stdin);
+			fgets(cpf, 12, stdin);
 
 			if(strlen(cpf) > 0){
-
-				result = validaCPF(cpf);
-
 				retiraBarraN(cpf);
 				retiraEspaco(cpf);
+				result = validaCPF(cpf);
 
 				if (result) {
 					strcpy(listaProfessor[qtdProfessor].cpf, cpf);
@@ -94,20 +101,25 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 		while (!dataValida) {
 			Data nascimento;
 
-			printf("Digite a data de nascimento (dd mm aaaa): ");
-			scanf("%d/%d/%d", 
-				&listaProfessor[qtdProfessor].nascimento.dia, 
-				&listaProfessor[qtdProfessor].nascimento.mes, 
-				&listaProfessor[qtdProfessor].nascimento.ano);
-			
-			flush_in();
-			result = validaData();	
-			if (result) {
-				listaProfessor[qtdProfessor].nascimento = nascimento;
-				dataValida = true;
-			} else {
-				printf("Data inválida!\n");
+			printf("Digite a data de nascimento (dd/mm/aaaa): ");
+			if (scanf("%d/%d/%d", &nascimento.dia, &nascimento.mes, &nascimento.ano) == 3) {
+	
+				flush_in();
 
+				result = validaData(nascimento);	
+
+				if (result) {
+					listaProfessor[qtdProfessor].nascimento = nascimento;
+					dataValida = true;
+				} else {
+					printf("Data inválida!\n");
+
+				}
+			} else {
+				flush_in();
+            	printf("\n");
+            	printf("Erro: Formato de data inválido. Use o padrão DD/MM/AAAA.\n");
+            	printf("\n");
 			}
 		}
 
@@ -141,12 +153,14 @@ void listarProfessor(Professor listaProfessor[], int qtdProfessor) {
 void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
     printf("\n--- Atualizar Professor ---\n");
 
+	int matricula;
+	bool result = false;
+
     if (qtdProfessor == 0) {
         printf("Nenhum professor cadastrado!\n");
         return;
     }
 
-    int matricula;
     printf("Digite a matrícula do professor que deseja atualizar: ");
     scanf("%d", &matricula);
 
@@ -166,59 +180,114 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
     printf("\nProfessor encontrado: %s\n", listaProfessor[indice].nome);
     printf("Digite os novos dados:\n");
 
-    getchar();
+	bool nomeValido = false;
+	while (!nomeValido) {
+		char nome[50]; 
+		printf("Digite o nome: \n");
+		fgets(nome, 50, stdin);
 
-    bool nomeValido = false;
-    while (!nomeValido) {
-        printf("Digite o novo nome: ");
-        fgets(listaProfessor[indice].nome, 50, stdin);
+		retiraEspaco(nome);
+		retiraBarraN(nome);
 
-        if (!validaNome(listaProfessor[indice].nome)) {
-            printf("Nome inválido! (Deve ter entre 1 e 20 caracteres)\n");
-        } else {
-            retiraBarraN(listaProfessor[indice].nome);
-            nomeValido = true;
-        }
-    }
+		if(strlen(nome) > 0){
+			toLowerCase(nome);
 
-    bool sexoValido = false;
-    while (!sexoValido) {
-        printf("Digite o novo sexo (M/F): ");
-        scanf(" %c", &listaProfessor[indice].sexo);
+			result = validaNome(nome);
 
-        if (!validaSexo(listaProfessor[indice].sexo)) {
-            printf("Sexo inválido! Digite apenas M ou F.\n");
-        } else {
-            sexoValido = true;
-        }
-    }
+			if (result) {
+				strcpy(listaProfessor[indice].nome, nome);
+				nomeValido = true;
+			} else {
+				printf("\nNome inválido! (Deve ter entre 1 e 20 caracteres)\n");
+			}
+		} else {
+			printf("\n");
+			printf("Inválido: Digite algum nome.\n");
+			printf("\n");
+		}
+	}
 
-    bool cpfValido = false;
-    while (!cpfValido) {
-        printf("Digite o novo CPF (somente números): ");
-        scanf("%s", listaProfessor[indice].cpf);
+	bool sexoValido = false;
+	while (!sexoValido) {
+		char sexo;
 
-        if (!validaCPF(listaProfessor[indice].cpf)) {
-            printf("CPF inválido!\n");
-        } else {
-            cpfValido = true;
-        }
-    }
+		printf("Digite o sexo (M/F): ");
+		scanf(" %c", &sexo);
+		flush_in();
 
-    bool dataValida = false;
-    while (!dataValida) {
-        printf("Digite a nova data de nascimento (dd mm aaaa): ");
-        scanf("%d %d %d", 
-            &listaProfessor[indice].nascimento.dia, 
-            &listaProfessor[indice].nascimento.mes, 
-            &listaProfessor[indice].nascimento.ano);
+		sexo = toLowerChar(sexo);
 
-        if (!validaData(listaProfessor[indice].nascimento)) {
-            printf("Data inválida!\n");
-        } else {
-            dataValida = true;
-        }
-    }
+		result = validaSexo(sexo);
+
+		if (result) {
+			listaProfessor[indice].sexo = sexo;
+			sexoValido = true;
+		} else {
+			printf("Sexo inválido! Digite apenas M ou F.\n");
+		}
+	}
+
+	bool cpfValido = false;
+	while (!cpfValido) {
+		char cpf[12];
+
+		printf("Digite o CPF (somente números): ");
+		fgets(cpf, 12, stdin);
+
+		if(strlen(cpf) > 0){
+			retiraBarraN(cpf);
+			retiraEspaco(cpf);
+			result = validaCPF(cpf);
+
+			if (result) {
+				strcpy(listaProfessor[indice].cpf, cpf);
+				cpfValido = true;
+			} else {
+				printf("CPF inválido!\n");
+			}
+		}else {
+			printf("\n");
+			printf("Digite um CPF\n");
+			printf("\n");
+		}
+	}
+
+	bool dataValida = false;
+	while (!dataValida) {
+		Data nascimento;
+
+		printf("Digite a data de nascimento (dd/mm/aaaa): ");
+		if (scanf("%d/%d/%d", &nascimento.dia, &nascimento.mes, &nascimento.ano) == 3) {
+
+			flush_in();
+
+			result = validaData(nascimento);	
+
+			if (result) {
+				listaProfessor[indice].nascimento = nascimento;
+				dataValida = true;
+			} else {
+				printf("Data inválida!\n");
+
+			}
+		} else {
+			flush_in();
+			printf("\n");
+			printf("Erro: Formato de data inválido. Use o padrão DD/MM/AAAA.\n");
+			printf("\n");
+		}
+	}
+
+	printf("\n--- ALUNO %i ATUALIZADO ---\n", listaProfessor[indice].matricula);
+	printf("Matrícula: %d\n", listaProfessor[indice].matricula);
+	printf("Nome: %s\n", listaProfessor[indice].nome);
+	printf("Sexo: %c\n", listaProfessor[indice].sexo);
+	printf("Nascimento: %02d/%02d/%04d\n",
+			listaProfessor[indice].nascimento.dia,
+			listaProfessor[indice].nascimento.mes,
+			listaProfessor[indice].nascimento.ano);
+	printf("CPF: %s\n", listaProfessor[indice].cpf);
+	printf("\n");
 
     printf("\nCadastro do professor atualizado com sucesso!\n");
 }
@@ -251,4 +320,67 @@ int excluirProfessor(Professor listaProfessor[], int qtdProfessor) {
 		}
 	}
 	return qtdProfessor;
+}
+
+void listarProfessorSexo(Professor alunos[], int qtdAlunos, char sexo) {
+    sexo = toLowerChar(sexo);
+
+    int encontrados = 0;
+    for (int i = 0; i < qtdAlunos; i++) {
+        if (alunos[i].ativo && alunos[i].sexo == sexo) {
+            printf("\n");
+            printf("Matrícula: %d\n", alunos[i].matricula);
+            printf("Nome: %s\n", alunos[i].nome);
+            printf("Sexo: %c\n", alunos[i].sexo);
+            printf("Nascimento: %02d/%02d/%04d\n",
+                   alunos[i].nascimento.dia,
+                   alunos[i].nascimento.mes,
+                   alunos[i].nascimento.ano);
+            printf("CPF: %s\n", alunos[i].cpf);
+            printf("\n");
+            encontrados++;
+        }
+    }
+
+    if (encontrados == 0) {
+        printf("Nenhum professor encontrado com o sexo informado.\n");
+    }
+}
+
+void ordenarProfessoresPorNome(Professor listaProfessor[], int qtdProfessor) {
+    if (qtdProfessor == 0) {
+        printf("Nenhum professor cadastrado!\n");
+        return;
+    }
+
+    Professor copia[TAM_PROFESSOR];
+
+    for (int i = 0; i < qtdProfessor; i++) {
+        copia[i] = listaProfessor[i];
+    }
+
+    for (int i = 0; i < qtdProfessor - 1; i++) {
+        for (int j = i + 1; j < qtdProfessor; j++) {
+            if (strcmp(copia[i].nome, copia[j].nome) > 0) {
+                Professor temp = copia[i];
+                copia[i] = copia[j];
+                copia[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < qtdProfessor; i++) {
+        if (copia[i].ativo) {
+            printf("\n");
+            printf("Matrícula: %d\n", copia[i].matricula);
+            printf("Nome: %s\n", copia[i].nome);
+            printf("Sexo: %c\n", copia[i].sexo);
+            printf("Nascimento: %02d/%02d/%04d\n",
+                   copia[i].nascimento.dia,
+                   copia[i].nascimento.mes,
+                   copia[i].nascimento.ano);
+            printf("CPF: %s\n", copia[i].cpf);
+            printf("\n");
+        }
+    }
 }

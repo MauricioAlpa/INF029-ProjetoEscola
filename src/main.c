@@ -30,7 +30,6 @@ int main() {
     int qtdProfessor = 0;
     Professor listaProfessor[TAM_PROFESSOR];
 
-
     Disciplina *disciplinas = malloc(MAX_Disciplinas * sizeof(Disciplina));
     int qtdDisciplinas = 0;
 

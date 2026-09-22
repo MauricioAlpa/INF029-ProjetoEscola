@@ -17,4 +17,8 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor);
 
 int excluirProfessor(Professor listaProfessor[], int qtdProfessor);
 
+void ordenarProfessoresPorNome(Professor listaProfessor[], int qtdProfessor);
+
+void listarProfessorSexo(Professor professores[], int qtdProfessores, char sexo);
+
 #endif

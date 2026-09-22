@@ -25,7 +25,7 @@ typedef struct
     char nome[50];
     char sexo;
     Data nascimento;
-    char cpf[11];
+    char cpf[12];
 }Professor;
 
 typedef struct
