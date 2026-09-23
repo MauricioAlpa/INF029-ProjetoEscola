@@ -1,6 +1,6 @@
 #include <Headers/MenuRelatorio.h>
 
-void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas) {
+void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas, Professor listaProfessor[], int qtdProfessor) {
 
     int sairRelatorios = 0;
     int opcaoRelatorio;
@@ -62,6 +62,11 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
 
             case 2:
                 printf("\n--- Listar Professores ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    listarProfessor(listaProfessor, qtdProfessor);
+                }
                 break;
 
             case 3:
@@ -127,7 +132,7 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
                 }
 
                 break;
-
+                
             case 7:
                 printf("\n--- Alunos ordenados por Data de Nascimento ---\n");
 
@@ -140,15 +145,52 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
                 break;
 
             case 8:
-                printf("\n--- Listar Professores por Sexo ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    bool result = false;
+                    char sexo;
+
+                    do
+                    {
+                        printf("\n--- Listar Professores por Sexo ---\n");
+
+                        printf("\n");
+                        printf("Escolha o filtro por gênero(M/F): \n");
+                        scanf(" %c", &sexo);
+                        
+
+                        sexo = toLowerChar(sexo);
+                        result = validaSexo(sexo);
+                    
+                        if(result){
+                            listarProfessorSexo(listaProfessor, qtdProfessor, sexo);
+                        }else {
+                            printf("\nDigite um gênero válido(M/F)\n");
+                            printf(" ");
+                        }
+
+                    } while (!result);
+                        
+                }
                 break;
 
             case 9:
                 printf("\n--- Listar Professores ordenados por Nome ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    ordenarProfessoresPorNome(listaProfessor, qtdProfessor);
+                }
                 break;
 
             case 10:
                 printf("\n--- Listar Professores ordenados por Data de Nascimento ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    ordenarProfessoresPorDataNascimento(listaProfessor, qtdProfessor);
+                }
                 break;
 
             case 11:
