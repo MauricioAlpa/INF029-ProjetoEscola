@@ -9,6 +9,7 @@
 #include <Headers/MenuAluno.h>
 #include <Headers/MenuDisciplina.h>
 #include <Headers/MenuRelatorio.h>
+#include <Headers/MenuProfessor.h>
 
 #define VAGAS 50
 #define TAM_PROFESSOR 50
