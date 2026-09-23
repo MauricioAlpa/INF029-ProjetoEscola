@@ -15,6 +15,8 @@ void listarProfessor(Professor listaProfessor[], int qtdProfessor);
 
 void atualizarProfessor(Professor listaProfessor[], int qtdProfessor);
 
+int existeMatriculaProfessor(Professor listaProfessor[], int qtdProfessor, int matricula);
+
 int excluirProfessor(Professor listaProfessor[], int qtdProfessor);
 
 void ordenarProfessoresPorNome(Professor listaProfessor[], int qtdProfessor);
