@@ -116,7 +116,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
         fgets(cpf, 12, stdin);
 
 
-        if(strlen(cpf) > 0){//verifica se o cpf não está vazio
+        if(strlen(cpf) == 11){//verifica se o cpf não está vazio
             retiraBarraN(cpf);
             retiraEspaco(cpf);
 
@@ -132,7 +132,7 @@ void cadastrarAluno(Aluno *alunos, int *qtdAlunos){
             }
         }else{
             printf("\n");
-            printf("Digite um CPF.\n");
+            printf("Digite um CPF com 11 números.\n");
             printf("\n");
         }
     }
@@ -380,6 +380,37 @@ void ordenarAlunosPorNome(Aluno *alunos, int qtdAlunos) {
         for (int j = i + 1; j < qtdAlunos; j++) {
 
             if (strcmp(copia[i].nome, copia[j].nome) > 0) {
+
+                Aluno temp = copia[i];
+                copia[i] = copia[j];
+                copia[j] = temp;
+            }
+        }
+    }
+
+    listarAlunos(copia, qtdAlunos);
+
+    free(copia);
+}
+
+void ordenarAlunosPorData(Aluno *alunos, int qtdAlunos) {
+
+    Aluno *copia = malloc(qtdAlunos * sizeof(Aluno));
+
+    for (int i = 0; i < qtdAlunos; i++) {
+        copia[i] = alunos[i];
+    }
+
+    for (int i = 0; i < qtdAlunos - 1; i++) {
+
+        for (int j = i + 1; j < qtdAlunos; j++) {
+
+            if (copia[i].nascimento.ano > copia[j].nascimento.ano ||
+               (copia[i].nascimento.ano == copia[j].nascimento.ano &&
+                copia[i].nascimento.mes > copia[j].nascimento.mes) ||
+               (copia[i].nascimento.ano == copia[j].nascimento.ano &&
+                copia[i].nascimento.mes == copia[j].nascimento.mes &&
+                copia[i].nascimento.dia > copia[j].nascimento.dia)) {
 
                 Aluno temp = copia[i];
                 copia[i] = copia[j];
