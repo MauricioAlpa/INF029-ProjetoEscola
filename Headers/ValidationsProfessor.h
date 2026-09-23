@@ -4,14 +4,14 @@
 #include <Headers/Structs.h>
 #include <string.h>
 
-bool validaNome(char nome[]);
+bool validaNomeProfessor(char nome[]);
 
-bool validaSexo(char sexo);
+bool validaSexoProfessor(char sexo);
 
-bool validaData(Data nascimento);
+bool validaDataProfessor(Data nascimento);
 
-bool validaCPF(char cpf[]);
+bool validaCPFProfessor(char cpf[]);
 
-bool validaMatricula(int matricula, Professor listaProfessor[], int qtdProfessor);
+bool validaMatriculaProfessor(int matricula, Professor listaProfessor[], int qtdProfessor);
 
 #endif

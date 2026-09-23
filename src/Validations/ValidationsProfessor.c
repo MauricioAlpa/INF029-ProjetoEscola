@@ -1,6 +1,6 @@
 #include <Headers/ValidationsProfessor.h>
 
-bool validaNome(char nome[]){
+bool validaNomeProfessor(char nome[]){
     if(strlen(nome) - 1 > 20 || strlen(nome) - 1 <= 0){
         return false;
     }
@@ -8,15 +8,15 @@ bool validaNome(char nome[]){
     return true;
 }
 
-bool validaSexo(char sexo){
-    if(sexo != 'M' && sexo != 'F'){
+bool validaSexoProfessor(char sexo){
+    if(sexo != 'm' && sexo != 'f'){
         return false;
     }
 
     return true;
 }
 
-bool validaData(Data nascimento) {
+bool validaDataProfessor(Data nascimento) {
     if (nascimento.ano < 1920 || nascimento.ano > 2026 || nascimento.mes < 1 || nascimento.mes > 12) {
         return false;
     }
@@ -49,7 +49,7 @@ bool validaData(Data nascimento) {
     return true;
 }
 
-bool validaCPF(char cpf[]){//Função para verificar se existem apenas números no CPF
+bool validaCPFProfessor(char cpf[]){//Função para verificar se existem apenas números no CPF
     if (strlen(cpf) != 11) {
         return false;
     }
@@ -63,7 +63,7 @@ bool validaCPF(char cpf[]){//Função para verificar se existem apenas números 
     return true;
 }
 
-bool validaMatricula(int matricula, Professor professores[], int qtdProfessor){ //Passo quantidade de Alunos pois preciso verificar o tamanho do vetor no for
+bool validaMatriculaProfessor(int matricula, Professor professores[], int qtdProfessor){ //Passo quantidade de Alunos pois preciso verificar o tamanho do vetor no for
     bool validado = false, matriculaExiste = false;
 
     for(int i = 0; i < qtdProfessor; i++){ //For com a função de verificar se já existe uma matricula igual a essa. Se sim, a matricula já existe muda de false para true

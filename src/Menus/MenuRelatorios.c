@@ -133,12 +133,33 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
                 break;
 
             case 8:
-                char sexo;
-                printf("\n--- Listar Professores por Sexo ---\n");
                 if (qtdProfessor == 0) {
                     printf("Nenhum professor cadastrado!\n");
                 } else {
-                    listarProfessorSexo(listaProfessor, qtdProfessor, sexo);
+                    bool result = false;
+                    char sexo;
+
+                    do
+                    {
+                        printf("\n--- Listar Professores por Sexo ---\n");
+
+                        printf("\n");
+                        printf("Escolha o filtro por gênero(M/F): \n");
+                        scanf(" %c", &sexo);
+                        
+
+                        sexo = toLowerChar(sexo);
+                        result = validaSexo(sexo);
+                    
+                        if(result){
+                            listarProfessorSexo(listaProfessor, qtdProfessor, sexo);
+                        }else {
+                            printf("\nDigite um gênero válido(M/F)\n");
+                            printf(" ");
+                        }
+
+                    } while (!result);
+                        
                 }
                 break;
 

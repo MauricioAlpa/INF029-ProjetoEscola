@@ -67,7 +67,7 @@ int main() {
                 break;
 
             case 4:
-                menuRelatorios(alunos, qtdAlunos, disciplinas, qtdDisciplinas, ,listaProfessor, qtdProfessor);
+                menuRelatorios(alunos, qtdAlunos, disciplinas, qtdDisciplinas, listaProfessor, qtdProfessor);
                 break;
         }
     }

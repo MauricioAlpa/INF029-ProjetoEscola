@@ -15,7 +15,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 			scanf("%i", &matriculaTemp);
 			flush_in();
 
-			result = validaMatricula(matriculaTemp, listaProfessor, qtdProfessor);
+			result = validaMatriculaProfessor(matriculaTemp, listaProfessor, qtdProfessor);
 
 			if(result){
 				listaProfessor[qtdProfessor].matricula = matriculaTemp;
@@ -37,7 +37,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 			if(strlen(nome) > 0){
 				toLowerCase(nome);
 
-				result = validaNome(nome);
+				result = validaNomeProfessor(nome);
 
 				if (result) {
 					strcpy(listaProfessor[qtdProfessor].nome, nome);
@@ -62,7 +62,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 			sexo = toLowerChar(sexo);
 
-			result = validaSexo(sexo);
+			result = validaSexoProfessor(sexo);
 
 			if (result) {
 				listaProfessor[qtdProfessor].sexo = sexo;
@@ -82,7 +82,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 			if(strlen(cpf) > 0){
 				retiraBarraN(cpf);
 				retiraEspaco(cpf);
-				result = validaCPF(cpf);
+				result = validaCPFProfessor(cpf);
 
 				if (result) {
 					strcpy(listaProfessor[qtdProfessor].cpf, cpf);
@@ -106,7 +106,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 	
 				flush_in();
 
-				result = validaData(nascimento);	
+				result = validaDataProfessor(nascimento);	
 
 				if (result) {
 					listaProfessor[qtdProfessor].nascimento = nascimento;
@@ -192,7 +192,7 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 		if(strlen(nome) > 0){
 			toLowerCase(nome);
 
-			result = validaNome(nome);
+			result = validaNomeProfessor(nome);
 
 			if (result) {
 				strcpy(listaProfessor[indice].nome, nome);
@@ -217,7 +217,7 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 		sexo = toLowerChar(sexo);
 
-		result = validaSexo(sexo);
+		result = validaSexoProfessor(sexo);
 
 		if (result) {
 			listaProfessor[indice].sexo = sexo;
@@ -237,7 +237,7 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 		if(strlen(cpf) > 0){
 			retiraBarraN(cpf);
 			retiraEspaco(cpf);
-			result = validaCPF(cpf);
+			result = validaCPFProfessor(cpf);
 
 			if (result) {
 				strcpy(listaProfessor[indice].cpf, cpf);
@@ -261,7 +261,7 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 			flush_in();
 
-			result = validaData(nascimento);	
+			result = validaDataProfessor(nascimento);	
 
 			if (result) {
 				listaProfessor[indice].nascimento = nascimento;
