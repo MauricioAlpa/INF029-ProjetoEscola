@@ -4,12 +4,17 @@ void menuDisciplina(Disciplina *disciplinas, int *qtdDisciplinas, Aluno *alunos,
     int opcaoDisciplina = 1;
 
     while (opcaoDisciplina) {
+         printf("\n");
+        printf("========================================\n");
+        printf("              MÓDULO DISCIPLINA\n");
+        printf("========================================\n");
         printf("0 - Voltar\n");
         printf("1 - Cadastrar disciplina\n");
         printf("2 - Inserir aluno em disciplina\n");
         printf("3 - Excluir aluno da disciplina\n");
         printf("4 - Atualizar disciplina\n");
         printf("5 - Excluir disciplina\n");
+        printf("========================================\n");
 
         int resultado = scanf("%d", &opcaoDisciplina);
         flush_in(); // descarta o resto da linha (inclusive o \n) para as funções começarem com o buffer limpo

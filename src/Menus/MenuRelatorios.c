@@ -206,10 +206,26 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
 
             case 12:
                 printf("\n--- Buscar Pessoa por Nome ---\n");
+
+                if (qtdAlunos == 0 && qtdProfessor == 0) {
+                    printf("Nenhum aluno ou professor cadastrado.\n\n");
+                }
+                else {
+                    buscarPessoasPorNome(alunos, qtdAlunos, listaProfessor, qtdProfessor);
+                }
+
                 break;
 
             case 13:
                 printf("\n--- Alunos matriculados em menos de 3 disciplinas ---\n");
+
+                if (qtdAlunos == 0) {
+                    printf("Nenhum aluno cadastrado.\n\n");
+                }
+                else {
+                    alunosMenosDeTresDisciplinas(disciplinas, qtdDisciplinas, alunos, qtdAlunos);
+                }
+
                 break;
 
             case 14:

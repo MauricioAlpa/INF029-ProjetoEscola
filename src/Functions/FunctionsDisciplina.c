@@ -506,3 +506,100 @@ void listarDisciplinasMaisDe40Alunos(Disciplina *disciplinas, int qtdDisciplinas
     }
     printf("\n");
 }
+
+void alunosMenosDeTresDisciplinas(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alunos, int qtdAlunos) {
+    int encontrados = 0;
+
+    for (int i = 0; i < qtdAlunos; i++) {
+        int qtdMatriculado = 0;
+
+        for (int j = 0; j < qtdDisciplinas; j++) {
+            for (int k = 0; k < disciplinas[j].qtdAlunos; k++) {
+                if (disciplinas[j].matriculas[k] == alunos[i].matricula) {
+                    qtdMatriculado++;
+                    break;
+                }
+            }
+        }
+
+        if (qtdMatriculado < 3) {
+            printf("Matrícula: %d | Nome: %s | Disciplinas: %d\n",
+                   alunos[i].matricula, alunos[i].nome, qtdMatriculado);
+            encontrados++;
+        }
+    }
+
+    if (encontrados == 0) {
+        printf("Nenhum aluno com menos de 3 disciplinas.\n");
+    }
+    printf("\n");
+}
+
+void buscarPessoasPorNome(Aluno *alunos, int qtdAlunos, Professor listaProfessor[], int qtdProfessor) {
+    char busca[50];
+    bool validadoBusca = false;
+
+    while (!validadoBusca) {
+        printf("Digite parte do nome para buscar: ");
+        if (fgets(busca, 50, stdin) == NULL) {
+            return;
+        }
+        if (strchr(busca, '\n') == NULL) {
+            flush_in();
+        }
+        busca[strcspn(busca, "\n")] = '\0';
+
+        if (strlen(busca) > 0) {
+            retiraEspaco(busca);
+            validadoBusca = true;
+        } else {
+            printf("\n");
+            printf("Busca inválida: não pode ficar em branco.\n");
+            printf("\n");
+        }
+    }
+
+    char buscaMinuscula[50];
+    strcpy(buscaMinuscula, busca);
+    toLowerCase(buscaMinuscula);
+
+    int encontrados = 0;
+
+    printf("\nAlunos:\n");
+    for (int i = 0; i < qtdAlunos; i++) {
+        char nomeMinusculo[50];
+        strcpy(nomeMinusculo, alunos[i].nome);
+        toLowerCase(nomeMinusculo);
+
+        if (strstr(nomeMinusculo, buscaMinuscula) != NULL) {
+            printf("  Matrícula: %d | Nome: %s\n", alunos[i].matricula, alunos[i].nome);
+            encontrados++;
+        }
+    }
+    if (encontrados == 0) {
+        printf("  Nenhum aluno encontrado.\n");
+    }
+
+    encontrados = 0;
+
+    printf("\nProfessores:\n");
+    for (int i = 0; i < qtdProfessor; i++) {
+        if (!listaProfessor[i].ativo) {
+            continue;
+        }
+
+        char nomeMinusculo[50];
+        strcpy(nomeMinusculo, listaProfessor[i].nome);
+        toLowerCase(nomeMinusculo);
+
+        if (strstr(nomeMinusculo, buscaMinuscula) != NULL) {
+            printf("  Matrícula: %d | Nome: %s\n", listaProfessor[i].matricula, listaProfessor[i].nome);
+            encontrados++;
+        }
+    }
+    if (encontrados == 0) {
+        printf("  Nenhum professor encontrado.\n");
+    }
+
+    printf("\n");
+}

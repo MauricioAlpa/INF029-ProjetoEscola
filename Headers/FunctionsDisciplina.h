@@ -25,4 +25,8 @@ void listarUmaDisciplina(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alu
 
 void listarDisciplinasMaisDe40Alunos(Disciplina *disciplinas, int qtdDisciplinas);
 
+void alunosMenosDeTresDisciplinas(Disciplina *disciplinas, int qtdDisciplinas, Aluno *alunos, int qtdAlunos);
+
+void buscarPessoasPorNome(Aluno *alunos, int qtdAlunos, Professor listaProfessor[], int qtdProfessor);
+
 #endif
