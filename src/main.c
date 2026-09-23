@@ -9,7 +9,7 @@
 #include <Headers/MenuAluno.h>
 #include <Headers/MenuDisciplina.h>
 #include <Headers/MenuRelatorio.h>
-//#include <Headers/MenuProfessor.h>
+#include <Headers/MenuProfessor.h>
 
 #define VAGAS 50
 #define TAM_PROFESSOR 50
@@ -59,15 +59,15 @@ int main() {
                 break;
             
             case 2:
-
+                menuProfessor(listaProfessor, &qtdProfessor);
                 break;
 
             case 3:
-                //menuDisciplina(disciplinas, &qtdDisciplinas, alunos, qtdAlunos);
+                menuDisciplina(disciplinas, &qtdDisciplinas, alunos, qtdAlunos);
                 break;
 
             case 4:
-                //menuRelatorios(alunos, qtdAlunos, disciplinas, qtdDisciplinas, listaProfessor, qtdProfessor);
+                menuRelatorios(alunos, qtdAlunos, disciplinas, qtdDisciplinas, listaProfessor, qtdProfessor);
                 break;
         }
     }
