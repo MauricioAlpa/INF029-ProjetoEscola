@@ -282,7 +282,7 @@ bool atualizarAluno(Aluno *alunos, int qtdAluno){
                 fgets(cpf, 12, stdin);
                 flush_in();
 
-                if(strlen(cpf) > 0){//verifica se o cpf não está vazio
+                if(strlen(cpf) == 11){//verifica se o cpf não está vazio
                     retiraBarraN(cpf);
                     retiraEspaco(cpf);
 
