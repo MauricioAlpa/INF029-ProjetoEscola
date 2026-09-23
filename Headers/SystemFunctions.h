@@ -15,6 +15,6 @@ char toLowerChar(char caractere);
 
 void flush_in();
 
-void listaAniversariantes(Aluno *alunos, int qtdAlunos);
+void listaAniversariantes(Aluno *alunos, Professor listaProfessor[], int qtdAlunos, int qtdProfessor);
 
 #endif

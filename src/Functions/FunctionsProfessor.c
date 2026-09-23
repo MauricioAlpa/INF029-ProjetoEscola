@@ -79,7 +79,7 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 			printf("Digite o CPF (somente números): ");
 			fgets(cpf, 12, stdin);
 
-			if(strlen(cpf) > 0){
+			if(strlen(cpf) == 11){
 				retiraBarraN(cpf);
 				retiraEspaco(cpf);
 				result = validaCPFProfessor(cpf);

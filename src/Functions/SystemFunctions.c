@@ -56,10 +56,10 @@ char toLowerChar(char caractere) {
     return caractere;
 }
 
-void listaAniversariantes(Aluno *alunos, int qtdAlunos){
+void listaAniversariantes(Aluno *alunos, Professor listaProfessor[], int qtdAlunos, int qtdProfessor){
     time_t agora = time(NULL); //Pega o tempo atual.
     struct tm *t = localtime(&agora); //Converte para uma struct
-    int qtdAniversariantesAlunos = 0;
+    int qtdAniversariantesAlunos = 0, qtdAniversariantesProfessor = 0;
 
 
     printf("\n====Alunos Aniversariantes do Mês===\n");
@@ -82,6 +82,30 @@ void listaAniversariantes(Aluno *alunos, int qtdAlunos){
     }
 
     if(qtdAniversariantesAlunos == 0){
-        printf("\nNenhum aniversariante neste mês.\n");
+        printf("\nNenhum aluno aniversariante neste mês.\n");
+    }
+
+    printf("\n====Professores Aniversariantes do Mês===\n");
+    printf("\n");
+
+    for(int i = 0; i < qtdProfessor; i++){
+
+        if(listaProfessor[i].nascimento.mes == t->tm_mon + 1){ //faço mais +1 pois o mes começa de 0
+            printf("Matrícula: %d\n", alunos[i].matricula);
+            printf("Nome: %s\n", listaProfessor[i].nome);
+            printf("Sexo: %c\n", listaProfessor[i].sexo);
+            printf("Nascimento: %02d/%02d/%04d\n",
+                listaProfessor[i].nascimento.dia,
+                listaProfessor[i].nascimento.mes,
+                listaProfessor[i].nascimento.ano);
+            printf("CPF: %s\n", listaProfessor[i].cpf);
+            printf("\n");
+            qtdAniversariantesProfessor++;
+        }
+    }
+
+
+    if(qtdAniversariantesProfessor == 0){
+        printf("\nNenhum professor aniversariante neste mês.\n");
     }
 }

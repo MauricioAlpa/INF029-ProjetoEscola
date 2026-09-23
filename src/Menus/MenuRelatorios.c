@@ -199,7 +199,7 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
                 if (qtdAlunos == 0) {
                     printf("\nLista vazia.\n");
                 } else {
-                    listaAniversariantes(alunos, qtdAlunos);
+                    listaAniversariantes(alunos, listaProfessor, qtdAlunos, qtdProfessor);
                 }
 
                 break;
