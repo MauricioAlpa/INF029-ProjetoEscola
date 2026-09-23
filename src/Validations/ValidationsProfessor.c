@@ -1,7 +1,9 @@
 #include <Headers/ValidationsProfessor.h>
 
-bool validaNomeProfessor(char nome[]){
-    if(strlen(nome) - 1 > 20 || strlen(nome) - 1 <= 0){
+bool validaNomeProfessor(char nome[]) {
+    size_t tam = strlen(nome);
+
+    if (tam < 1 || tam > 50) {
         return false;
     }
 
@@ -49,7 +51,7 @@ bool validaDataProfessor(Data nascimento) {
     return true;
 }
 
-bool validaCPFProfessor(char cpf[]){//Função para verificar se existem apenas números no CPF
+bool validaCPFProfessor(char cpf[]){
     if (strlen(cpf) != 11) {
         return false;
     }
@@ -63,10 +65,10 @@ bool validaCPFProfessor(char cpf[]){//Função para verificar se existem apenas 
     return true;
 }
 
-bool validaMatriculaProfessor(int matricula, Professor professores[], int qtdProfessor){ //Passo quantidade de Alunos pois preciso verificar o tamanho do vetor no for
+bool validaMatriculaProfessor(int matricula, Professor professores[], int qtdProfessor){ 
     bool validado = false, matriculaExiste = false;
 
-    for(int i = 0; i < qtdProfessor; i++){ //For com a função de verificar se já existe uma matricula igual a essa. Se sim, a matricula já existe muda de false para true
+    for(int i = 0; i < qtdProfessor; i++){ 
         if (professores[i].matricula == matricula){
             matriculaExiste = true;
         }

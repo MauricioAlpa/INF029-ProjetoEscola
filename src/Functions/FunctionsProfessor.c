@@ -74,26 +74,20 @@ int cadastrarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 		bool cpfValido = false;
 		while (!cpfValido) {
-			char cpf[12];
+			char cpf[15];
 
 			printf("Digite o CPF (somente números): ");
-			fgets(cpf, 12, stdin);
+			fgets(cpf, 15, stdin);
 
-			if(strlen(cpf) == 11){
-				retiraBarraN(cpf);
-				retiraEspaco(cpf);
-				result = validaCPFProfessor(cpf);
+			retiraBarraN(cpf);
+			retiraEspaco(cpf);
+			result = validaCPFProfessor(cpf);
 
-				if (result) {
-					strcpy(listaProfessor[qtdProfessor].cpf, cpf);
-					cpfValido = true;
-				} else {
-					printf("CPF inválido!\n");
-				}
-			}else {
-				printf("\n");
-				printf("Digite um CPF\n");
-				printf("\n");
+			if (result) {
+				strcpy(listaProfessor[qtdProfessor].cpf, cpf);
+				cpfValido = true;
+			} else {
+				printf("CPF inválido!\n");
 			}
 		}
 
@@ -150,6 +144,15 @@ void listarProfessor(Professor listaProfessor[], int qtdProfessor) {
 	}
 }
 
+int existeMatriculaProfessor(Professor listaProfessor[], int qtdProfessor, int matricula) {
+    for (int i = 0; i < qtdProfessor; i++) {
+        if (listaProfessor[i].matricula == matricula && listaProfessor[i].ativo) {
+            return i; 
+        }
+    }
+    return -1; 
+}
+
 void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
     printf("\n--- Atualizar Professor ---\n");
 
@@ -163,14 +166,9 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
     printf("Digite a matrícula do professor que deseja atualizar: ");
     scanf("%d", &matricula);
+    flush_in();
 
-    int indice = -1;
-    for (int i = 0; i < qtdProfessor; i++) {
-        if (listaProfessor[i].matricula == matricula && listaProfessor[i].ativo) {
-            indice = i;
-            break;
-        }
-    }
+    int indice = existeMatriculaProfessor(listaProfessor, qtdProfessor, matricula);
 
     if (indice == -1) {
         printf("Matrícula inexistente ou professor inativo!\n");
@@ -229,26 +227,20 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 
 	bool cpfValido = false;
 	while (!cpfValido) {
-		char cpf[12];
+		char cpf[15];
 
 		printf("Digite o CPF (somente números): ");
-		fgets(cpf, 12, stdin);
+		fgets(cpf, 15, stdin);
 
-		if(strlen(cpf) == 11){
-			retiraBarraN(cpf);
-			retiraEspaco(cpf);
-			result = validaCPFProfessor(cpf);
+		retiraBarraN(cpf);
+		retiraEspaco(cpf);
+		result = validaCPFProfessor(cpf);
 
-			if (result) {
-				strcpy(listaProfessor[indice].cpf, cpf);
-				cpfValido = true;
-			} else {
-				printf("CPF inválido!\n");
-			}
-		}else {
-			printf("\n");
-			printf("Digite um CPF\n");
-			printf("\n");
+		if (result) {
+			strcpy(listaProfessor[qtdProfessor].cpf, cpf);
+			cpfValido = true;
+		} else {
+			printf("CPF inválido!\n");
 		}
 	}
 
@@ -293,33 +285,34 @@ void atualizarProfessor(Professor listaProfessor[], int qtdProfessor) {
 }
 
 int excluirProfessor(Professor listaProfessor[], int qtdProfessor) {
-	printf("Excluir Professor\n");
-	printf("Digite a matrícula: ");
-	int matricula;
-	int achou = 0;
-	scanf("%d", &matricula);
-	if (matricula < 0) {
-		printf("Matricula Invalida\n");
-	} else {
-		for (int i = 0; i < qtdProfessor; i++) {
-			if (matricula == listaProfessor[i].matricula) {
-				for (int j = i; j < qtdProfessor - 1; j++) {
-					listaProfessor[j].matricula = listaProfessor[j + 1].matricula;
-					listaProfessor[j].sexo = listaProfessor[j + 1].sexo;
-					listaProfessor[j].ativo = listaProfessor[j + 1].ativo;
-				}
-				qtdProfessor--;
-				achou = 1;
-				break;
-			}
-		}
-		if (achou) {
-			printf("Professor excluido com sucesso!\n");
-		} else {
-			printf("Matricula inexistente!\n");
-		}
-	}
-	return qtdProfessor;
+    printf("Excluir Professor\n");
+    printf("Digite a matrícula: ");
+    int matricula;
+    int achou = 0;
+
+    scanf("%d", &matricula);
+    flush_in();
+
+    if (matricula < 0) {
+        printf("Matricula Invalida\n");
+    } else {
+        int i = existeMatriculaProfessor(listaProfessor, qtdProfessor, matricula);
+
+        if (i != -1) {
+            for (int j = i; j < qtdProfessor - 1; j++) {
+                listaProfessor[j] = listaProfessor[j + 1]; // Copia a struct inteira
+            }
+            qtdProfessor--;
+            achou = 1;
+        }
+
+        if (achou) {
+            printf("Professor excluido com sucesso!\n");
+        } else {
+            printf("Matricula inexistente!\n");
+        }
+    }
+    return qtdProfessor;
 }
 
 void listarProfessorSexo(Professor listaProfessor[], int qtdProfessor, char sexo) {
