@@ -4,10 +4,10 @@
 #include <Headers/FunctionsDisciplina.h>
 #include <Headers/FunctionsProfessor.h>
 #include <Headers/ValidationsAluno.h>
-#include <Headers/ValidationsProfessor.h>
-#include <Headers/ValidationsDisciplina.h>
 #include <stdio.h>
 #include <Headers/Structs.h>
+#include <Headers/ValidationsProfessor.h>
+#include <Headers/ValidationsDisciplina.h>
 
 void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int qtdDisciplinas, Professor listaProfessor[], int qtdProfessor);
 

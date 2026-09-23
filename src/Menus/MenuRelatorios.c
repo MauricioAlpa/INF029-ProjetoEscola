@@ -62,6 +62,11 @@ void menuRelatorios(Aluno *alunos, int qtdAlunos, Disciplina *disciplinas, int q
 
             case 2:
                 printf("\n--- Listar Professores ---\n");
+                if (qtdProfessor == 0) {
+                    printf("Nenhum professor cadastrado!\n");
+                } else {
+                    listarProfessor(listaProfessor, qtdProfessor);
+                }
                 break;
 
             case 3:
