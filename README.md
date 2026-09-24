@@ -1,5 +1,11 @@
 # INF029-ProjetoEscola
 
+## Para Compilar usar comando:
+
+gcc src/main.c src/Functions/FunctionsAluno.c src/Functions/FunctionsDisciplina.c src/Functions/FunctionsProfessor.c src/Functions/SystemFunctions.c src/Menus/MenuAluno.c src/Menus/MenuDisciplina.c src/Menus/MenuProfessor.c src/Menus/MenuRelatorios.c src/Validations/ValidationsAluno.c src/Validations/ValidationsDisciplina.c src/Validations/ValidationsProfessor.c -I. -o main
+
+---
+
 ## 📋 Sobre o Projeto
 
 O **projeto escola** é uma aplicação desenvolvida em C para controle do funcionamento básico de uma escola.
